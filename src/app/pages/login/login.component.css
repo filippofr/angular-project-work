@@ -1,0 +1,23 @@
+.background {
+  background-image: url('../../../assets/images/bg-intro-mobile-cut.svg');
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: contain;
+  height: 92%;
+  width: 100%;
+  position: absolute;
+}
+.container{
+  position: relative;
+  margin-top: 200px;
+  margin-left: 250px;
+}
+.btn{
+  background-color: hsl(181, 62%, 46%);
+  color: white;
+  width: 100px;
+  border-radius: 1px;
+}
+input {
+  border-radius: 1px;
+}

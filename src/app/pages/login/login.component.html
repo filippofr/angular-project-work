@@ -1,1 +1,27 @@
-<p>login works!</p>
+<div class="background">
+  <div class="container">
+    <div class="row">
+      <div class="col col-lg-4 col-md-12">
+        <form (ngSubmit)="login()" [formGroup]="loginForm">
+          <!-- Email input -->
+          <div class="form-outline mb-4">
+            <input type="email" placeholder="Username" class="form-control" formControlName="username" />
+          </div>
+      
+          <!-- Password input -->
+          <div class="form-outline mb-4">
+            <input type="password" placeholder="Password" class="form-control" formControlName="password" />
+          </div>
+          <div class="text-danger" *ngIf="loginError">
+            {{ loginError }}
+          </div>
+      
+          <!-- Submit button -->
+          <div class="text-center">
+            <button type="submit" class="btn">Log In</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
