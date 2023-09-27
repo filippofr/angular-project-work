@@ -5,12 +5,13 @@ import { RegistrationComponent } from './pages/registration/registration.compone
 import { HomeComponent } from './pages/home/home.component';
 import { authGuard } from './guards/auth.guard';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { TransactionComponent } from './pages/transaction/transaction.component';
 
 const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
-  },
+  },  
   {
     path: 'signup',
     component: RegistrationComponent
@@ -23,6 +24,10 @@ const routes: Routes = [
     path: 'profile',
     component: ProfileComponent,
     canActivate: [authGuard]
+  },
+  {
+    path: 'transaction',
+    component: TransactionComponent
   },
   {
     path: '',

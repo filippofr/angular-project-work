@@ -24,6 +24,11 @@ export class AuthService {
   }
 
   login(username: string, password: string) {
+    this.http.post<{user: User, id: string}>('/api/account', {username, password}).pipe(
+      tap(res => this.jwtSrv.setBankId(res.id)),
+      tap(res => this._currentUser$.next(res.user)),
+      map(res => res.user)
+    );
     return this.http.post<{user: User, token: string}>('/api/login', {username, password})
       .pipe(
         tap(res => this.jwtSrv.setToken(res.token)),
@@ -43,6 +48,7 @@ export class AuthService {
 
   logout() {
     this.jwtSrv.removeToken();
+    this.jwtSrv.removeBankId();
     this._currentUser$.next(null);
     this.router.navigate(['/login']);
   }

@@ -16,6 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { TransactionComponent } from './pages/transaction/transaction.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
     NavUserComponent,
     ChangePasswordComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    TransactionComponent
   ],
   imports: [
     BrowserModule,
