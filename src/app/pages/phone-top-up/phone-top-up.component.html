@@ -1,0 +1,55 @@
+<form [formGroup]="phoneTopUpForm">
+    <div class="card">
+    
+        <div class="cardSlot1">
+            <b><div style="margin-bottom: 5px;" class="inputTitle">Numero di telefono</div></b>
+            <div class="select-wrapper">
+                <span class="input-group-text" id="basic-addon1"><img src="../../../assets/images/Italy.svg" alt="Immagine SVG" class="iconsFlag">+39</span>
+            <input type="tel" name="name" maxlength="10" class="form-control" formControlName="phoneNumber">
+        
+        </div>
+    </div>
+        <div class="cardSlot2">            
+            <b><div style="margin-top: 5px;"  class="inputTitle">Importo</div></b>
+            <div class="select-wrapper">
+            <span class="input-group-text" id="basic-addon1">€</span>
+            <select class="form-control" formControlName="amount">                
+                <option>5</option>
+                <option>10</option>
+                <option>15</option>
+                <option>20</option>
+                <option>50</option>
+              </select>
+            </div>
+        </div>
+    
+      <div class="cardSlot3">
+            <b><div class="inputTitle">Operatore Telefonico</div></b>        
+            <div class="select-wrapper">
+                <span class="input-group-text" id="basic-addon1"><img src="{{icona}}" alt="Immagine SVG" class="icons"></span>
+                <select class="form-control" formControlName="phoneServiceProvider" (change)="updateIcon($event)">
+                  <option>Tim</option>
+                  <option>Vodafone</option>
+                  <option>WindTre</option>
+                  <option>Iliad</option>
+                  <option>PosteMobile</option>
+                  <option>Fastweb Mobile</option>
+                  <option>Ho.</option>
+                  <option>Tiscali</option>
+                  <option>Very Mobile</option>
+                  <option>Kena</option>
+                  <option>Spusu</option>
+                </select>
+              </div> </div>
+     <!--
+        <div class="cardSlot4">
+            <b><div class="inputTitle">Operatore Telefonico</div></b>
+            <textarea name="Text1" cols="40" rows="3"  class="form-control" formControlName="description"></textarea>        
+        </div>
+     --> 
+        <div class="cardSlot5">        
+        <button class="button-40" role="button" (click)="phoneTopUp()">Ricarica telefono</button>
+        </div>
+    
+    </div>
+    </form>

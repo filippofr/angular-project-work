@@ -1,0 +1,36 @@
+<form [formGroup]="transactionForm">
+    <div class="card">
+    
+        <div class="cardSlot1">
+            
+            <b><div class="inputTitle">Category</div></b>
+            <input type="text"  class="form-control" formControlName="category">
+        </div> 
+    
+        <div class="cardSlot2">                        
+            <b><div style="margin-top: 5px;"  class="inputTitle">Importo(€)</div></b>
+            <div class="select-wrapper">
+            <input type="number" step="0.01" min="0.01"  class="form-control" formControlName="amount">
+        </div></div>
+    
+    <!--     <div class="cardSlot3">
+            <b><div class="inputTitle">Categoria</div></b>        
+            
+                <select  class="form-control" formControlName="category">
+                  <option>Valore1</option>
+                  <option>Valore2</option>
+                  <option>Valore3</option>
+                </select>
+        </div> -->
+    
+        <div class="cardSlot4">
+            <b><div class="inputTitle">Descrizione</div></b>
+            <textarea name="Text1" cols="40" rows="3"  class="form-control" formControlName="description"></textarea>        
+        </div>
+    
+        <div class="cardSlot5">        
+        <button class="button-40" role="button" (click)="transaction()">Dammi i soldi</button>
+        </div>
+    
+    </div>
+    </form>

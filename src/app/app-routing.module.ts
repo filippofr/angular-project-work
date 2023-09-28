@@ -6,6 +6,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { authGuard } from './guards/auth.guard';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { TransactionComponent } from './pages/transaction/transaction.component';
+import { PhoneTopUpComponent } from './pages/phone-top-up/phone-top-up.component';
+import { AddTransactionComponent } from './pages/add-transaction/add-transaction.component';
 
 const routes: Routes = [
   {
@@ -27,7 +29,18 @@ const routes: Routes = [
   },
   {
     path: 'transaction',
-    component: TransactionComponent
+    component: TransactionComponent,
+    canActivate:[authGuard]
+  },
+  {
+    path: 'phoneTopUp',
+    component: PhoneTopUpComponent,
+    canActivate:[authGuard]
+  },
+  {
+    path: 'refill',
+    component: AddTransactionComponent,
+    canActivate:[authGuard]
   },
   {
     path: '',

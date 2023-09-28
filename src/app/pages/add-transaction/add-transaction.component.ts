@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { catchError, throwError } from 'rxjs';
+import { Validators, FormBuilder } from '@angular/forms';
 import { TransactionService } from 'src/app/services/transaction.service';
+
 @Component({
-  selector: 'app-transaction',
-  templateUrl: './transaction.component.html',
-  styleUrls: ['./transaction.component.css']
+  selector: 'app-add-transaction',
+  templateUrl: './add-transaction.component.html',
+  styleUrls: ['./add-transaction.component.css']
 })
-export class TransactionComponent {
+export class AddTransactionComponent {
 
   transactionForm = this.fb.group({    
-    iban: ['', {validators: Validators.required}],
+    category: ['', {validators: Validators.required}],
     amount: ['', {validators: Validators.required}],
     description: ['', {validators: Validators.required}]
   })
@@ -26,9 +26,9 @@ export class TransactionComponent {
 
   transaction(){
     if(this.transactionForm.valid){
-      const { iban, amount, description } = this.transactionForm.value; 
+      const { category, amount, description } = this.transactionForm.value; 
       const numberAmount = parseFloat(amount!);
-      this.transSrv.transaction(iban!, numberAmount, description!)
+      this.transSrv.transaction(category!, numberAmount, description!)
     }
     else{
       console.log("errore, transazione fallita");

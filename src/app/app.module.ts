@@ -17,6 +17,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { TransactionComponent } from './pages/transaction/transaction.component';
+import { PhoneTopUpComponent } from './pages/phone-top-up/phone-top-up.component';
+import { AddTransactionComponent } from './pages/add-transaction/add-transaction.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { TransactionComponent } from './pages/transaction/transaction.component'
     ChangePasswordComponent,
     HomeComponent,
     ProfileComponent,
-    TransactionComponent
+    TransactionComponent,
+    PhoneTopUpComponent,
+    AddTransactionComponent
   ],
   imports: [
     BrowserModule,

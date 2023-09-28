@@ -54,7 +54,7 @@ export class AuthService {
   }
 
   private fetchUser() {
-    this.http.get<User>('/api/users/me')
+    this.http.get<User>('https://projectworkits.azurewebsites.net/api/users/me')
       .subscribe(user => this._currentUser$.next(user));
   }
 }
