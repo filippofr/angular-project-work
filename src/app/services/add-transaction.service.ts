@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { JwtService } from './jwt.service';
 import { BankAccount } from '../interfaces/bank-account';
 import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class AddTransactionService {
 
   constructor(private jwtSrv: JwtService,
     private authSrv: AuthService,
-    private http: HttpClient) { }
+    private http: HttpClient,
+    private router: Router) { }
 
     addMoney(category: string, amount: number, description: string){
 
@@ -40,6 +42,7 @@ export class AddTransactionService {
               console.error("Errore:", error);
             }
           );
+          this.router.navigate(['home']);
       } else {
         console.log(bankAcc!.id);
         console.log("Non riuscito");

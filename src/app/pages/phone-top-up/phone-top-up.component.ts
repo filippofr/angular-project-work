@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { catchError, throwError } from 'rxjs';
 import { PhoneTopUpService } from 'src/app/services/phone-top-up.service';
 
 @Component({
@@ -15,10 +17,11 @@ export class PhoneTopUpComponent implements OnInit {
     phoneServiceProvider: ['', {validators: Validators.required}]
   })
 
-  phoneTopUpError = "";
+  phoneError = '';
 
   constructor(private phoneSrv: PhoneTopUpService,
-     protected fb: FormBuilder)
+     protected fb: FormBuilder,
+     private router: Router)
    { 
 
    }
@@ -41,9 +44,51 @@ export class PhoneTopUpComponent implements OnInit {
     if(this.phoneTopUpForm.valid){
       const { phoneNumber, amount, phoneServiceProvider } = this.phoneTopUpForm.value; 
       const numberAmount = parseFloat(amount!);
-      this.phoneSrv.phoneTopUp(phoneNumber!, numberAmount, phoneServiceProvider!) 
+      this.phoneSrv.phoneTopUp(phoneNumber!, numberAmount, phoneServiceProvider!)
+      .pipe(
+        catchError(err => {
+          this.phoneError = err.error.message;
+          return throwError(() => err);   
+        })
+      )
+      .subscribe(() => {
+        this.router.navigate(['menu-actions'])
+      });
     }
     else{
+      console.log(this.phoneTopUpForm.value.phoneNumber)
+      if( this.phoneTopUpForm.value.phoneNumber == "" || this.phoneTopUpForm.value.phoneNumber!.length < 10){
+        if(this.phoneTopUpForm.value.amount == "" && (this.phoneTopUpForm.value.phoneNumber == "" || this.phoneTopUpForm.value.phoneNumber!.length < 10)){
+          if(this.phoneTopUpForm.value.phoneServiceProvider == "" && this.phoneTopUpForm.value.amount == "" && (this.phoneTopUpForm.value.phoneNumber == "" || this.phoneTopUpForm.value.phoneNumber!.length < 10)){
+            this.phoneError = "Numero di telefono, importo ed operatore non validi";
+          }
+          else{
+          this.phoneError = "Numero di telefono ed importo non validi";
+        }
+          }else{
+            if(this.phoneTopUpForm.value.phoneServiceProvider == "" && (this.phoneTopUpForm.value.phoneNumber == "" || this.phoneTopUpForm.value.phoneNumber!.length < 10)){
+              this.phoneError = "Numero di telefono ed operatore non validi";
+            }
+            else{
+              this.phoneError = "Numero di telefono non valido";
+            }
+          }
+      }
+      else{
+        if(this.phoneTopUpForm.value.amount == ""){          
+          if(this.phoneTopUpForm.value.amount == "" && this.phoneTopUpForm.value.phoneServiceProvider == ""){            
+            this.phoneError = "Importo ed operatore non validi";            
+            }
+            else{
+          this.phoneError = "Importo non valido";
+            }
+          }
+          else{
+            if(this.phoneTopUpForm.value.phoneServiceProvider == ""){
+              this.phoneError = "Operatore non valido";
+              }
+          }
+      } 
       console.log("errore, transazione fallita");
     }
   }

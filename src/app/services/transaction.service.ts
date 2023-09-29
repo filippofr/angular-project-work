@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { JwtService } from './jwt.service';
 import { AuthService } from './auth.service';
 import { BankAccount } from '../interfaces/bank-account';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class TransactionService {
 
   constructor(private jwtSrv: JwtService,
     private http: HttpClient,
-    private authSrv: AuthService) { }
+    private authSrv: AuthService,
+    private router: Router) { }
 
   transaction(iban: string, amount: number, description: string){
 
@@ -38,6 +40,7 @@ export class TransactionService {
             console.error("Errore:", error);
           }
         );
+        this.router.navigate(['menu-actions']);
     } else {
       console.log(bankAcc!.id);
       console.log("Non riuscito");

@@ -45,7 +45,9 @@
                   <option>Spusu</option>
                 </select>
               </div> </div>
-              
+              <div class="text-danger" *ngIf="phoneError">
+                {{ phoneError }}
+              </div>
      <!--
         <div class="cardSlot4">
             <b><div class="inputTitle">Operatore Telefonico</div></b>
