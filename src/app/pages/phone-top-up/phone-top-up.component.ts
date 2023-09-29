@@ -10,10 +10,12 @@ import { PhoneTopUpService } from 'src/app/services/phone-top-up.service';
 export class PhoneTopUpComponent implements OnInit {
 
   phoneTopUpForm = this.fb.group({    
-    phoneNumber: ['', {validators: Validators.required}],
+    phoneNumber: ['', {validators: [Validators.min(10), Validators.required]}],
     amount: ['', {validators: Validators.required}],
     phoneServiceProvider: ['', {validators: Validators.required}]
   })
+
+  phoneTopUpError = "";
 
   constructor(private phoneSrv: PhoneTopUpService,
      protected fb: FormBuilder)
@@ -39,7 +41,7 @@ export class PhoneTopUpComponent implements OnInit {
     if(this.phoneTopUpForm.valid){
       const { phoneNumber, amount, phoneServiceProvider } = this.phoneTopUpForm.value; 
       const numberAmount = parseFloat(amount!);
-      /* this.phoneSrv.phoneTopUp(phoneNumber!, numberAmount, phoneServiceProvider!) */
+      this.phoneSrv.phoneTopUp(phoneNumber!, numberAmount, phoneServiceProvider!) 
     }
     else{
       console.log("errore, transazione fallita");

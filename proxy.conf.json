@@ -1,6 +1,8 @@
 {
   "/api": {
     "target": "https://projectworkits.azurewebsites.net",
-    "secure": false
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug"
   }
 }

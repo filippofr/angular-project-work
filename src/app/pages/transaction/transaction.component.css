@@ -1,3 +1,26 @@
+.background {
+  background-image: url('../../../assets/images/bg-intro-mobile-cut.svg');
+  transform: scaleY(-1); 
+  background-repeat: no-repeat;
+  background-position: 295%;
+  background-size: contain;
+  height: 92%;
+  width: 100%;
+  position: absolute;
+}
+.background2 {
+  background-image: url('../../../assets/images/bg-inverted.svg');
+  background-repeat: no-repeat;
+  transform: rotate(180deg);
+  height: 50px;
+  right: 900px;
+  background-position: 1%;
+  background-size: contain;
+  height: 92%;
+  width: 100%;
+  position: absolute;
+
+}
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     grid-template-columns: auto;
@@ -84,7 +107,7 @@ textarea{
 
 
 .button-40 {
-  background-color: hsl(108, 84%, 39%);
+  background-color: rgb(46, 195, 163);
   border: 1px solid transparent;
   border-radius: .75rem;
   box-sizing: border-box;
@@ -109,8 +132,9 @@ textarea{
 }
 
 .button-40:hover {
-  background-color: hsl(139, 83%, 25%);
+  background-color: rgb(46, 50, 77);
 }
+
 
 .button-40:focus {
   box-shadow: none;

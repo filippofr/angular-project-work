@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
+import { AddTransactionService } from 'src/app/services/add-transaction.service';
 import { TransactionService } from 'src/app/services/transaction.service';
 
 @Component({
@@ -18,21 +19,23 @@ export class AddTransactionComponent {
   transactionError = '';
 
   constructor(protected fb: FormBuilder,
-    private transSrv: TransactionService)
+    private addSrv: AddTransactionService)
    { 
 
    }
 
 
-  transaction(){
+   transaction(){
     if(this.transactionForm.valid){
       const { category, amount, description } = this.transactionForm.value; 
       const numberAmount = parseFloat(amount!);
-      this.transSrv.transaction(category!, numberAmount, description!)
+      this.addSrv.addMoney(category!, numberAmount, description!)
     }
     else{
       console.log("errore, transazione fallita");
     }
   }
 
-}
+  }
+
+

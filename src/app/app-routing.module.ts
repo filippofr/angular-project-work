@@ -32,17 +32,17 @@ const routes: Routes = [
   {
     path: 'transaction',
     component: TransactionComponent,
-    canActivate:[authGuard]
+    canActivate: [authGuard]
   },
   {
     path: 'phoneTopUp',
     component: PhoneTopUpComponent,
-    canActivate:[authGuard]
+    canActivate: [authGuard]
   },
   {
     path: 'refill',
     component: AddTransactionComponent,
-    canActivate:[authGuard]
+    canActivate: [authGuard]
   },
   {
     path: 'menu-actions',
