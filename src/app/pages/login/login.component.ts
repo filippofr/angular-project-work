@@ -50,7 +50,7 @@ export class LoginComponent {
           })
         )
         .subscribe(() => {
-          this.router.navigate(['/home'])
+          this.router.navigate(['menu-actions'])
         });
     }
   }

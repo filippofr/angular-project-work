@@ -1,0 +1,14 @@
+
+.container{
+    margin-top: 150px;
+}
+.card{
+    margin-bottom: 20px;
+    border-radius: 20px;
+}
+.icon{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
