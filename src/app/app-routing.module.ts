@@ -8,6 +8,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { TransactionComponent } from './pages/transaction/transaction.component';
 import { PhoneTopUpComponent } from './pages/phone-top-up/phone-top-up.component';
 import { AddTransactionComponent } from './pages/add-transaction/add-transaction.component';
+import { MenuActionsComponent } from './pages/menu-actions/menu-actions.component';
+import { TransactionsComponent } from './pages/transactions/transactions.component';
 
 const routes: Routes = [
   {
@@ -41,6 +43,16 @@ const routes: Routes = [
     path: 'refill',
     component: AddTransactionComponent,
     canActivate:[authGuard]
+  },
+  {
+    path: 'menu-actions',
+    component: MenuActionsComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path: 'transactions',
+    component: TransactionsComponent,
+    canActivate: [authGuard]
   },
   {
     path: '',

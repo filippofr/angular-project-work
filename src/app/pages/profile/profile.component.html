@@ -1,1 +1,52 @@
-<p>profile works!</p>
+<div class="container text-center">
+  <div class="row align-items-start">
+    <div class="col">
+      <img class="profile-picture" src="../../../assets/images/user-empty.svg" alt="">
+      <div class="mt-5">
+        <button type="button" class="btn">
+          Vai ai miei movimenti <fa-icon class="spacing" icon="arrow-right"></fa-icon>
+        </button>
+      </div>
+    </div>
+    <div class="col">
+      <div class="profile-data">{{account?.user!.fullName}}</div>
+      <div class="profile-data">{{account?.iban}}</div>
+      
+      <button
+        type="button"
+        class="btn"
+        (click)="collapse.toggle()"
+        [attr.aria-expanded]="!isCollapsed"
+      >
+        Cambia Password
+      </button>
+      
+      <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+        <div class="change-pass-section">
+          <form [formGroup]="changePassForm">
+            <div class="form-outline mb-2">
+              <input type="password" placeholder="Vecchia Password" class="form-control" formControlName="oldPass" />
+            </div>
+            <div class="form-outline mb-2">
+              <input type="password" placeholder="Nuova Password" class="form-control" formControlName="newPass" />
+            </div>
+            <div class="form-outline mb-2">
+              <input type="password" placeholder="Ripeti nuova Password" class="form-control" formControlName="repeatNewPass" />
+            </div>
+            <div class="text-danger" *ngIf="changePassError">
+              {{ changePassError }}
+            </div>
+        
+            <!-- Submit button -->
+            <div class="text-center">
+              <button type="submit" class="btn" (click)="changePass()" 
+                [disabled]="changePassForm.invalid">
+                Cambia Password
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

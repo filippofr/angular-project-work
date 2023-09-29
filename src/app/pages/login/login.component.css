@@ -18,6 +18,10 @@
   width: 100px;
   border-radius: 1px;
 }
+.btn:active{
+  background-color: hsl(181, 43%, 63%);
+  color: white;
+}
 input {
   border-radius: 1px;
 }
