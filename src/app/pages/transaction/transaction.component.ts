@@ -10,12 +10,12 @@ import { TransactionService } from 'src/app/services/transaction.service';
 export class TransactionComponent {
 
   transactionForm = this.fb.group({    
-    iban: ['', {validators: Validators.required}],
-    amount: ['', {validators: Validators.required}],
+    iban: ['', {validators: [Validators.minLength(27), Validators.maxLength(27), Validators.required]}],
+    amount: ['', {validators: [Validators.min(0.01), Validators.required]}],
     description: ['', {validators: Validators.required}]
   })
 
-  transactionError = '';
+  transactionError : boolean = false;
 
   constructor(protected fb: FormBuilder,
     private transSrv: TransactionService)
@@ -31,6 +31,7 @@ export class TransactionComponent {
       this.transSrv.transaction(iban!, numberAmount, description!)
     }
     else{
+      this.transactionError = true;
       console.log("errore, transazione fallita");
     }
   }

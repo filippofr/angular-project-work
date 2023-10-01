@@ -12,12 +12,12 @@ import { PhoneTopUpService } from 'src/app/services/phone-top-up.service';
 export class PhoneTopUpComponent implements OnInit {
 
   phoneTopUpForm = this.fb.group({    
-    phoneNumber: ['', {validators: [Validators.min(10), Validators.required]}],
+    phoneNumber: ['', {validators: [Validators.minLength(10), Validators.required]}],
     amount: ['', {validators: Validators.required}],
     phoneServiceProvider: ['', {validators: Validators.required}]
   })
 
-  phoneError = '';
+  phoneError: boolean = false;
 
   constructor(private phoneSrv: PhoneTopUpService,
      protected fb: FormBuilder,
@@ -29,16 +29,6 @@ export class PhoneTopUpComponent implements OnInit {
    ngOnInit(){    
     this.icona = '../../../assets/images/internet.svg';
    }
-
-  /*  switch (phoneServiceProvider) {
-    case phoneServiceProvider:
-      
-      break;
-   
-    default:
-      break;
-   } */
-   
    
    phoneTopUp(){
     if(this.phoneTopUpForm.valid){
@@ -52,43 +42,11 @@ export class PhoneTopUpComponent implements OnInit {
         })
       )
       .subscribe(() => {
-        this.router.navigate(['menu-actions'])
+        this.router.navigate(['menu-actions']);
       });
     }
-    else{
-      console.log(this.phoneTopUpForm.value.phoneNumber)
-      if( this.phoneTopUpForm.value.phoneNumber == "" || this.phoneTopUpForm.value.phoneNumber!.length < 10){
-        if(this.phoneTopUpForm.value.amount == "" && (this.phoneTopUpForm.value.phoneNumber == "" || this.phoneTopUpForm.value.phoneNumber!.length < 10)){
-          if(this.phoneTopUpForm.value.phoneServiceProvider == "" && this.phoneTopUpForm.value.amount == "" && (this.phoneTopUpForm.value.phoneNumber == "" || this.phoneTopUpForm.value.phoneNumber!.length < 10)){
-            this.phoneError = "Numero di telefono, importo ed operatore non validi";
-          }
-          else{
-          this.phoneError = "Numero di telefono ed importo non validi";
-        }
-          }else{
-            if(this.phoneTopUpForm.value.phoneServiceProvider == "" && (this.phoneTopUpForm.value.phoneNumber == "" || this.phoneTopUpForm.value.phoneNumber!.length < 10)){
-              this.phoneError = "Numero di telefono ed operatore non validi";
-            }
-            else{
-              this.phoneError = "Numero di telefono non valido";
-            }
-          }
-      }
-      else{
-        if(this.phoneTopUpForm.value.amount == ""){          
-          if(this.phoneTopUpForm.value.amount == "" && this.phoneTopUpForm.value.phoneServiceProvider == ""){            
-            this.phoneError = "Importo ed operatore non validi";            
-            }
-            else{
-          this.phoneError = "Importo non valido";
-            }
-          }
-          else{
-            if(this.phoneTopUpForm.value.phoneServiceProvider == ""){
-              this.phoneError = "Operatore non valido";
-              }
-          }
-      } 
+    else{         
+      this.phoneError = true;
       console.log("errore, transazione fallita");
     }
   }

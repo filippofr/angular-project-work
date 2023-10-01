@@ -9,8 +9,11 @@
             <div class="select-wrapper">
                 <span class="input-group-text" id="basic-addon1"><img src="../../../assets/images/Italy.svg" alt="Immagine SVG" class="iconsFlag">+39</span>
             <input type="tel" name="name" maxlength="10" class="form-control" formControlName="phoneNumber">
-        
+            
         </div>
+        <div *ngIf="phoneTopUpForm && phoneTopUpForm.get('phoneNumber')!.invalid && phoneError == true" class="error-message">
+                <span class="text-danger">Inserisci un numero valido (minimo 10 caratteri).</span>
+              </div>
     </div>
         <div class="cardSlot2">            
             <b><div style="margin-top: 5px;"  class="inputTitle">Importo</div></b>
@@ -25,6 +28,9 @@
                 <option>50</option>
               </select>
             </div>
+            <div *ngIf="phoneTopUpForm && phoneTopUpForm.get('amount')!.invalid && phoneError == true" class="error-message">
+                <span class="text-danger">Questo campo è obbligatorio.</span>
+              </div>
         </div>
     
       <div class="cardSlot3">
@@ -44,16 +50,12 @@
                   <option>Kena</option>
                   <option>Spusu</option>
                 </select>
-              </div> </div>
-              <div class="text-danger" *ngIf="phoneError">
-                {{ phoneError }}
-              </div>
-     <!--
-        <div class="cardSlot4">
-            <b><div class="inputTitle">Operatore Telefonico</div></b>
-            <textarea name="Text1" cols="40" rows="3"  class="form-control" formControlName="description"></textarea>        
-        </div>
-     --> 
+              </div>            
+              <div *ngIf="phoneTopUpForm && phoneTopUpForm.get('phoneServiceProvider')!.invalid && phoneError == true" class="error-message">
+                <span class="text-danger">Questo campo è obbligatorio.</span>
+              </div></div>
+
+
         <div class="cardSlot5">        
         <button class="button-40" role="button" (click)="phoneTopUp()">Ricarica telefono</button>
         </div>

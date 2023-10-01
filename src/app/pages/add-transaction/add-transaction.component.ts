@@ -16,7 +16,7 @@ export class AddTransactionComponent {
     description: ['', {validators: Validators.required}]
   })
 
-  transactionError = '';
+  transactionError : boolean = false;
 
   constructor(protected fb: FormBuilder,
     private addSrv: AddTransactionService)
@@ -32,6 +32,7 @@ export class AddTransactionComponent {
       this.addSrv.addMoney(category!, numberAmount, description!)
     }
     else{
+      this.transactionError = true;
       console.log("errore, transazione fallita");
     }
   }
