@@ -89,7 +89,10 @@
 .cardSlot3{
   grid-area: numPad;
     padding: 3rem;
-    padding-left: 7rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    align-items: center;
+    text-align: center;
 }
 
 .cardSlot4{
@@ -190,7 +193,7 @@ textarea{
       #keyboard li {  
       float: left;  
       margin: 0 5px 5px 0;  
-      width: 60px;  
+      width: 200px;  
       height: 60px;  
       font-size: 24px;
       line-height: 60px;  

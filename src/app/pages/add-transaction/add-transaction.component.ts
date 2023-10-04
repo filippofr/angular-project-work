@@ -33,41 +33,30 @@ export class AddTransactionComponent  implements OnInit {
 
 
   pushMoney(){
-    if(this.transactionForm.valid){
       const numberAmount = parseFloat(this.amount);
-      if(numberAmount !== null || numberAmount !== undefined){
-      const { description } = this.transactionForm.value; 
+      if(numberAmount !== null || numberAmount !== undefined || numberAmount[0] !== "0"){
+      const description = "Deposito bancomat";
       const category = "650c36dd4fbb7705e5fe4fd3";
       this.addSrv.addMoney(category!, numberAmount, description!)
       this.insert = "Hai depositato";
     }
     else{
-      this.insert = "Importo obbligatorio";
+      this.insert = "Importo obbligatorio o invalido";
     }
-    }
-    else{
-      this.transactionError = true;
-      this.insert = "Descrizione richiesta";
-    }
+    
   }
 
 
   pullMoney(){
-    if(this.transactionForm.valid){
       const numberAmount = parseFloat(this.amount);
       if(numberAmount !== null || numberAmount !== undefined){
-      const { description } = this.transactionForm.value; 
+      const description = "Prelievo bancomat";
       const category = "650c37094fbb7705e5fe4fd7";
       this.addSrv.addMoney(category!, numberAmount, description!)
       this.insert = "Hai prelevato";
     }
     else{
       this.insert = "Importo obbligatorio";
-    }
-    }
-    else{
-      this.transactionError = true;
-      this.insert = "Descrizione richiesta";
     }
   }
 
