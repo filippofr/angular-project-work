@@ -3,14 +3,14 @@
     <div class="col">
       <img class="profile-picture" src="../../../assets/images/user-empty.svg" alt="">
       <div class="mt-5">
-        <button type="button" class="btn">
+        <button type="button" class="btn" [routerLink]="['/transactions']">
           Vai ai miei movimenti <fa-icon class="spacing" icon="arrow-right"></fa-icon>
         </button>
       </div>
     </div>
     <div class="col">
-      <div class="profile-data">{{account!.user!.fullName}}</div>
-      <div class="profile-data">{{account!.iban}}</div>
+      <div class="profile-data">{{account?.user!.fullName}}</div>
+      <div class="profile-data">{{account?.iban}}</div>
       
       <button
         type="button"

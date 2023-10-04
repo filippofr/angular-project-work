@@ -4,13 +4,21 @@
       <div class="col col-lg-4 col-md-12">
         <form (ngSubmit)="login()" [formGroup]="loginForm">
           <!-- Email input -->
-          <div class="form-outline mb-4">
+          <!-- <div class="form-outline mb-4">
             <input type="email" placeholder="Username" class="form-control" formControlName="username" />
+          </div> -->
+          <div class="form-floating mb-4">
+            <input type="email" class="form-control" id="usernameInput" formControlName="username" placeholder="name@example.com">
+            <label for="usernameInput">Username</label>
           </div>
       
           <!-- Password input -->
-          <div class="form-outline mb-4">
+          <!-- <div class="form-outline mb-4">
             <input type="password" placeholder="Password" class="form-control" formControlName="password" />
+          </div> -->
+          <div class="form-floating mb-4">
+            <input type="password" class="form-control" id="passwordInput" formControlName="password" placeholder="Password">
+            <label for="passwordInput">Password</label>
           </div>
           <div class="text-danger" *ngIf="loginError">
             {{ loginError }}

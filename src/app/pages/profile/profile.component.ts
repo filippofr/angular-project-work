@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Validators, FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Subject, catchError, takeUntil, throwError } from 'rxjs';
 import { BankAccount } from 'src/app/interfaces/bank-account';
 import { AuthService } from 'src/app/services/auth.service';
@@ -25,7 +25,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
   constructor(private authSrv: AuthService,
               protected fb: FormBuilder){
     authSrv.currentAccount$.subscribe(account => {
-      this.account = account!
+      if(account){
+        this.account = account
+      }
+      
     })
   }
 

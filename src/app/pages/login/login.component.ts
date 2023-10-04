@@ -11,8 +11,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent {
   loginForm = this.fb.group({
-    username: ['', {validators: Validators.required}],
-    password: ['', {validators: Validators.required}]
+    username: ['', { validators: Validators.required }],
+    password: ['', { validators: Validators.required }]
   })
 
   loginError = '';
@@ -20,10 +20,10 @@ export class LoginComponent {
   private destroyed$ = new Subject<void>();
 
   constructor(protected fb: FormBuilder,
-              private authSrv: AuthService,
-              private router: Router) { }
+    private authSrv: AuthService,
+    private router: Router) { }
 
-              
+
   ngOnInit(): void {
     this.loginForm.valueChanges
       .pipe(
@@ -32,6 +32,11 @@ export class LoginComponent {
       .subscribe(() => {
         this.loginError = '';
       });
+
+    setTimeout(() => {
+      this.router.navigate(['home']);
+    }, 30000);  //30s
+    
   }
 
   ngOnDestroy(): void {
@@ -46,7 +51,7 @@ export class LoginComponent {
         .pipe(
           catchError(err => {
             this.loginError = err.error.message;
-            return throwError(() => err);   
+            return throwError(() => err);
           })
         )
         .subscribe(() => {
