@@ -1,0 +1,53 @@
+.dp-hidden {
+    width: 0;
+    margin: 0;
+    border: none;
+    padding: 0;
+}
+
+.custom-day {
+    text-align: center;
+    padding: 0.185rem 0.25rem;
+    display: inline-block;
+    height: 2rem;
+    width: 2rem;
+}
+
+.custom-day.focused {
+    background-color: #e6e6e6;
+}
+
+.custom-day.range,
+.custom-day:hover {
+    background-color: hsl(181, 62%, 46%);
+    color: white;
+}
+
+.custom-day.faded {
+    background-color: hsla(181, 62%, 46%, 0.495);
+}
+
+.filter-container {
+    width: 27rem;
+}
+
+.btn {
+    background-color: hsl(181, 62%, 46%);
+    color: white;
+}
+
+.btn:active {
+    background-color: hsl(181, 43%, 63%);
+    color: white;
+}
+.btn-send-filters{
+    width: fit-content;
+    border-radius: .3rem;
+    display: inline;
+    font-size: 1rem;
+    padding: 6px 12px 6px 12px !important;
+}
+
+.mr-3 {
+    margin-right: 1rem;
+}

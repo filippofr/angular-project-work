@@ -1,0 +1,11 @@
+<div class="modal-header">
+  <h4 class="modal-title">Dettaglio movimento</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+  <p>{{ transaction.date }}</p>
+  <p>{{ transaction.category.name }}</p>
+  <p>{{ transaction.description }}</p>
+  <p *ngIf="transaction.category.type === 'Uscita'">{{ transaction.amount | transactionUscita}}</p>
+  <p *ngIf="transaction.category.type === 'Entrata'">{{ transaction.amount | transactionEntrata}}</p>
+</div>

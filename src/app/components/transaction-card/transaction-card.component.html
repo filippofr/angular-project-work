@@ -1,5 +1,24 @@
-<div class="card">
+<div class="card" *ngIf="transaction" type="button" (click)="open()">
   <div class="card-body">
-    This is some text within a card body.
+    <div class="trans-body">
+      <div class="row">
+        <div class="col-auto">
+          <div class="category">{{transaction.category.name}}</div>
+          <div>{{transaction.date | date : 'short' : undefined : 'it-IT'}}</div>
+        </div>
+        <div class="col col-desc">
+          <div class="description">
+            {{transaction.description}}
+          </div>
+        </div>
+        <div class="col col-amount">
+          <div class="amount">
+            <div class="entrata" *ngIf="transaction.category.type == 'Entrata'">{{transaction.amount | transactionEntrata}}</div>
+            <div class="uscita" *ngIf="transaction.category.type == 'Uscita'">{{transaction.amount | transactionUscita}}</div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
   </div>
 </div>

@@ -1,15 +1,42 @@
 <div class="container text-center">
-  <div class="row align-items-start">
-    <div class="col">
-      <div class="card">
+  <div class="row column-gap-6">
+    <div class="col balance-col">
+      <div class="card balance-card">
         <div class="card-body">
-          This is some text within a card body.
+          <h1 class="balance" *ngIf="lastTransaction">
+            {{lastTransaction.balance | currency}}
+          </h1>
+          <div class="iban" *ngIf="account">
+            {{account.iban}}
+          </div>
         </div>
       </div>
+      <button class="btn btn-export" type="button" (click)="export()">
+        Esporta movimenti<img class="export-icon" src="../../../assets/images/icon-excel.svg" alt="">
+      </button>
     </div>
-    <div class="col">
-      <app-transactions-filter></app-transactions-filter>
-      <app-transaction-card></app-transaction-card>
+    <div class="col trans-col">
+      <div class="filter">
+        <div ngbDropdown class="d-inline-block">
+          <button type="button" class="btn" ngbDropdownToggle>
+            <fa-icon icon="filter"></fa-icon>
+          </button>
+          <div ngbDropdownMenu>
+            <app-transactions-filter (filters)="setFilters($event)"></app-transactions-filter>
+          </div>
+        </div>
+      </div>
+      
+      <div class="trans-list">
+        <div *ngFor="let trans of transactions | slice: (page-1) * pageSize : page * pageSize">
+          <app-transaction-card [transaction]="trans"></app-transaction-card>
+        </div>
+      </div>
+      
+
+      <div class="trans-pages">
+        <ngb-pagination [collectionSize]="transactions.length" [(page)]="page" [pageSize]="pageSize" [directionLinks]="false"></ngb-pagination>
+      </div>
     </div>
   </div>
 </div>
