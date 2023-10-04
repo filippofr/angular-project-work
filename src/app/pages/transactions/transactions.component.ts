@@ -29,12 +29,12 @@ export class TransactionsComponent implements OnInit, OnDestroy {
   constructor(private authSrv: AuthService,
     private bankAccSrv: BankAccountService
   ) {
-    authSrv.currentUser$.subscribe(user => {
+    this.authSrv.currentUser$.subscribe(user => {
       if (user) {
-        authSrv.currentAccount$.subscribe(acc => {
+        this.authSrv.currentAccount$.subscribe(acc => {
           if (acc) {
             this.account = acc;
-            bankAccSrv.listTransaction(acc.id!).subscribe(trans => {
+            this.bankAccSrv.listTransaction(acc.id!).subscribe(trans => {
               if (trans) {
                 this.transactions = trans;
                 this.lastTransaction = trans[0];
@@ -73,7 +73,7 @@ export class TransactionsComponent implements OnInit, OnDestroy {
   export(): void {
     const formatTrans = this.transactions.map(transaction => {
       return {
-        bankAccountId: transaction.bankAccount.user.fullName,
+        bankAccountId: transaction.bankAccount.id!,
         date: transaction.date,
         balance: transaction.balance,
         categoryName: transaction.category.name,

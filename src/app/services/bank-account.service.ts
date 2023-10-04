@@ -13,8 +13,8 @@ export class BankAccountService {
   transactions$ = this._transactions$.asObservable();
 
   constructor(private http: HttpClient,
-              private authSrv: AuthService
-  ) { 
+    private authSrv: AuthService
+  ) {
     // authSrv.currentAccount$.subscribe(account => {
     //   if(account){
     //     this.listTransaction(account.id!);
@@ -26,18 +26,19 @@ export class BankAccountService {
 
   listTransaction(bankAccountId: string, record?: number, category?: string, firstDate?: Date, secondDate?: Date) {
     // const { record, category, firstDate, secondDate } = filters;
-    return this.http.post<Transaction[]>(`/api/transaction/list`, {bankAccount: bankAccountId, 
-                                                                   record: record,
-                                                                   category: category,
-                                                                   firstDate: firstDate,
-                                                                   secondDate: secondDate
-                                                                  })
+    return this.http.post<Transaction[]>(`/api/transaction/list`, {
+      bankAccount: bankAccountId,
+      record: record,
+      category: category,
+      firstDate: firstDate,
+      secondDate: secondDate
+    })
       // .subscribe(trans => this._transactions$.next(trans));
   }
 
-  listCategory(){
+  listCategory() {
     return this.http.get<Category[]>(`/api/category/list`);
   }
 
-  
+
 }

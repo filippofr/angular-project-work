@@ -1,12 +1,10 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import { BehaviorSubject, map, tap } from "rxjs"
-import { JwtService as JWTService } from "./jwt.service";
-import { User } from "../interfaces/user";
-import { SignUpClass } from "../pages/registration/registration.component";
-import { BankAccountService } from "./bank-account.service";
+import { BehaviorSubject, map, tap } from "rxjs";
 import { BankAccount } from "../interfaces/bank-account";
+import { User } from "../interfaces/user";
+import { JwtService as JWTService } from "./jwt.service";
 
 
 @Injectable({providedIn: 'root'})
