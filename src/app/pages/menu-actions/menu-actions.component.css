@@ -12,8 +12,12 @@
     margin-top: 50px;
 }
 .card{
+    
     margin-bottom: 20px;
     border-radius: 20px;
+    background-color: rgb(37, 162, 163);
+    color: white;
+    font-size: 20px;
 }
 .card-body{
     padding-left: 3rem;

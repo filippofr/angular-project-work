@@ -10,7 +10,7 @@ import { TransactionService } from 'src/app/services/transaction.service';
 export class TransactionComponent {
 
   transactionForm = this.fb.group({    
-    iban: ['', {validators: [Validators.minLength(27), Validators.maxLength(27), Validators.required]}],
+    iban: ['', {validators: [Validators.minLength(28), Validators.maxLength(28), Validators.required]}],
     amount: ['', {validators: [Validators.min(0.01), Validators.required]}],
     description: ['', {validators: Validators.required}]
   })

@@ -12,7 +12,6 @@ import { TransactionService } from 'src/app/services/transaction.service';
 export class AddTransactionComponent  implements OnInit {
 
   transactionForm = this.fb.group({    
-    description: ['', {validators: Validators.required}]
   })
 
   transactionError : boolean = false;

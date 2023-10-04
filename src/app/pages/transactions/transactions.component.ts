@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BankAccount } from 'src/app/interfaces/bank-account';
 import { Transaction } from 'src/app/interfaces/transaction';
 import { AuthService } from 'src/app/services/auth.service';
@@ -37,6 +37,7 @@ export class TransactionsComponent {
       }
     })
   }
+
 
   setFilters(value: any) {
     this.bankAccSrv.listTransaction(
