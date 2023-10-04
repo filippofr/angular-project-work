@@ -34,15 +34,13 @@ export class AddTransactionService {
         this.http.post("https://projectworkits.azurewebsites.net/api/transaction/add",  {bankAccount, category, amount, description} , { headers } )
           .subscribe(
             (response) => {
-              // Gestisci la risposta dal backend qui
               console.log("Riuscito:", response);
             },
             (error) => {
-              // Gestisci l'errore qui
               console.error("Errore:", error);
             }
           );
-          this.router.navigate(['home']);
+          this.router.navigate(['menu-actions']);
       } else {
         console.log(bankAcc!.id);
         console.log("Non riuscito");
