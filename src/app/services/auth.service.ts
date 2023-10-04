@@ -17,11 +17,16 @@ export class AuthService {
   private _currentAccount$ = new BehaviorSubject<BankAccount | null>(null);
   currentAccount$ = this._currentAccount$.asObservable();
 
-  constructor(private jwtSrv: JWTService,
-              private http: HttpClient,
-              private router: Router) {
-    this.fetchUser();
-    this.currentAccount();
+  constructor(
+    private jwtSrv: JWTService,
+    private http: HttpClient,
+    private router: Router
+  ) {
+    if (this.isLoggedIn()) {
+      this.fetchUser();
+      this.currentAccount();
+    }
+    
   }
 
   isLoggedIn() {

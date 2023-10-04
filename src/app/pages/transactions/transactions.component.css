@@ -62,9 +62,7 @@
 }
 
 .export-icon{
-    width: 1rem;
-    height: 1rem;
-    color: white;
+    margin-left: 0.4rem;
 }
 
 ngb-pagination ::ng-deep ul > li:not(.active) > a {

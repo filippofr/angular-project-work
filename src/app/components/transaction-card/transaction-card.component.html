@@ -11,7 +11,7 @@
             {{transaction.description}}
           </div>
         </div>
-        <div class="col col-amount">
+        <div class="col-auto col-amount">
           <div class="amount">
             <div class="entrata" *ngIf="transaction.category.type == 'Entrata'">{{transaction.amount | transactionEntrata}}</div>
             <div class="uscita" *ngIf="transaction.category.type == 'Uscita'">{{transaction.amount | transactionUscita}}</div>
