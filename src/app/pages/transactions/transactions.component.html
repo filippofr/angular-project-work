@@ -1,17 +1,28 @@
 <div class="container text-center">
   <div class="row column-gap-6">
     <div class="col balance-col">
-      <div class="card balance-card">
-        <div class="card-body">
-          <h1 class="balance" *ngIf="lastTransaction">
-            {{lastTransaction.balance | currency}}
-          </h1>
-          <div class="iban" *ngIf="account">
-            {{account.iban}}
-          </div>
+      <div class="card ">
+
+
+
+
+        <img class="image" src="../../../assets/images/logo-bianco.svg" alt="">
+        <div>
+        <label class="amount" *ngIf="lastTransaction">Saldo:</label>
         </div>
+        <div>          
+          <label style="text-align: left;" class="balance" *ngIf="lastTransaction"><b>{{lastTransaction.balance | currency}}</b></label>
+        </div>
+        <img class="chip" src="../../../assets/images/chip.svg" alt="">
+
+        <label class="iban" *ngIf="account"><b>{{account.iban}}</b></label>
+
+
+        <img class="wireless" src="../../../assets/images/wireless.svg" alt="">
+
+      
       </div>
-      <button class="btn btn-export" type="button" (click)="export()">
+      <button class="btn btn-export rightButton" type="button" (click)="export()">
         Esporta movimenti<img class="export-icon" src="../../../assets/images/icon-excel.svg" alt="">
       </button>
     </div>
@@ -34,7 +45,7 @@
       </div>
       
 
-      <div class="trans-pages">
+      <div class="trans-pages" >
         <ngb-pagination [collectionSize]="transactions.length" [(page)]="page" [pageSize]="pageSize" [directionLinks]="false"></ngb-pagination>
       </div>
     </div>

@@ -11,7 +11,7 @@
 }
 
 .balance-col > .balance-card {
-    background-color: hsl(181, 62%, 46%);
+    background-image: url('../../../assets/images/geometric-pattern.svg');
     color: white;
     height: 200px;
     width: 100%;
@@ -21,8 +21,20 @@
 .balance {
     position: absolute;
     top: 50px;
-    left: 50%;
-    transform: translate(-50%, 0);
+    left: 1.5rem;
+    color: white;
+    font-size: 40px;
+    margin-top: 7rem;
+    margin-right: 7rem;
+}
+
+.amount{
+    position: absolute;
+    top: 50px;
+    left: 5%;
+    color: white;
+    font-size: 20px;
+    margin-top: 5rem;
 }
 
 .iban {
@@ -30,6 +42,9 @@
     text-align: left;
     bottom: 20px;
     left: 30px;
+    margin-bottom: 0.5rem;
+    margin-left: 13.5rem;
+    color: white;
 }
 
 .btn-export {
@@ -59,6 +74,7 @@
     margin: auto;
     margin-top: 1rem;
     width: max-content;
+
 }
 
 .export-icon{
@@ -72,6 +88,57 @@ ngb-pagination ::ng-deep ul > li:not(.active) > a {
 }
 
 ngb-pagination ::ng-deep ul > li.active > a {
-    background-color: hsl(181, 62%, 46%) !important;
-    border-color: hsl(181, 62%, 46%) !important;
+    
+    background-color: rgb(40, 83, 122) !important;
+    border-color: rgb(40, 83, 122) !important;
+}
+
+.credit-card{
+
+    background-repeat: no-repeat;
+    background-position: 295%;
+    background-size: contain;
+    height: 92%;
+    width: 100%;
+    position: absolute;
+}
+
+.card{
+    background-image: url('../../../assets/images/geometric-credit-card-180.svg');
+
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+height: 300px;
+width: 498px;
+border-radius: 30px;
+}
+.image{
+    transform: none;
+    width: 200px;
+    margin: 1.5rem;
+    bottom: 200px;
+    margin-top: 2.3rem;
+    margin-left: 2.5rem;
+}
+
+.chip{
+    position: absolute;
+    height: 60px;
+    margin-left: 24rem;
+    margin-top: 5rem;
+}
+
+.wireless{
+    transform: rotate(90deg);
+    position: absolute;
+    height: 50px;
+    transform: rotate(270deg);
+    margin-left: 20rem;
+    margin-top: 5.25rem;
+}
+
+.rightButton{
+    margin-left: 0px;
+    background-color: rgb(40, 83, 122);
 }
