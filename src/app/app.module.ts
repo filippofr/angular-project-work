@@ -28,12 +28,22 @@ import { TransactionEntrataPipe } from './pipes/transaction-entrata.pipe';
 import { TransactionUscitaPipe } from './pipes/transaction-uscita.pipe';
 
 registerLocaleData(localeIt, 'it-IT')
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LandingPageComponent } from './pages/landing-page/landing-page.component';
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faArrowRight, faUser, faInfo, faMobile,faShield, faPhone } from '@fortawesome/free-solid-svg-icons';
+
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistrationComponent,
     LoginComponent,
+    LandingPageComponent,
     NavBarComponent,
     NavUserComponent,
     HomeComponent,
@@ -54,7 +64,13 @@ registerLocaleData(localeIt, 'it-IT')
     ReactiveFormsModule,
     FontAwesomeModule,
     BrowserAnimationsModule,
-    CurrencyPipe
+    CurrencyPipe,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule,
+    NgbModule,
+    FontAwesomeModule,
+
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
@@ -67,5 +83,10 @@ registerLocaleData(localeIt, 'it-IT')
 export class AppModule {
   constructor(library: FaIconLibrary) {
     library.addIcons(faUser, faArrowRight, faCalendarDays, faFilter, faFileExcel);
+ 
+  constructor(library: FaIconLibrary){
+    library.addIcons(faUser, faArrowRight, faInfo, faMobile, faShield, faPhone);
   }
+  
+ }
 }
