@@ -36,8 +36,15 @@ export class AuthService {
   }
 
   login(username: string, password: string) {
-    return this.http.post<{user: User, token: string}>('/api/login', {username, password})
+    this.http.post<{user: User, account: BankAccount, token: string}>('https://projectworkits.azurewebsites.net/api/login', {username, password}).pipe(
+      tap(res => this._currentAccount$.next(res.account)),
+      tap(res => this.jwtSrv.setToken(res.token)),
+      tap(res => this._currentUser$.next(res.user)),
+      map(res => res.user)
+    );
+    return this.http.post<{user: User, token: string}>('https://projectworkits.azurewebsites.net/api/login', {username, password})
       .pipe(
+        tap(res => this.jwtSrv.setBankId(res.user.id)),
         tap(res => this.jwtSrv.setToken(res.token)),
         tap(res => this._currentUser$.next(res.user)),
         map(res => res.user)
@@ -46,20 +53,21 @@ export class AuthService {
 
   logout() {
     this.jwtSrv.removeToken();
+    this.jwtSrv.removeBankId();
     this._currentUser$.next(null);
     this.router.navigate(['home']);
   }
 
   update(oldPassword: string, newPassword: string) {
-    return this.http.post<{message: string}>('/api/reset', {oldPassword, newPassword})
+    return this.http.post<{message: string}>('https://projectworkits.azurewebsites.net/api/reset', {oldPassword, newPassword})
   }
 
   private fetchUser() {
-    this.http.get<User>('/api/users/me')
+    this.http.get<User>('https://projectworkits.azurewebsites.net/api/users/me')
       .subscribe(user => this._currentUser$.next(user));
   }
   private currentAccount(){
-    this.http.get<BankAccount>('/api/account')
+    this.http.get<BankAccount>('https://projectworkits.azurewebsites.net/api/account')
       .subscribe(account => this._currentAccount$.next(account))
   }
 }

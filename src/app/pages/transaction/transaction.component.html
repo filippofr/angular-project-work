@@ -1,0 +1,49 @@
+
+<div class="background"></div>
+<div class="background2"></div>
+<form [formGroup]="transactionForm">
+
+<div class="card">
+
+    <div class="cardSlot1">
+        
+        <b><div class="inputTitle">IBAN</div></b>
+        <input type="text"  class="form-control" formControlName="iban">
+    <div *ngIf="transactionForm && transactionForm.get('iban')!.invalid && transactionError == true" class="error-message">
+        <span class="text-danger">Inserisci un iban valido (lunghezza 27 caratteri).</span>
+      </div>
+    </div>
+    <div class="cardSlot2">
+        <b><div class="inputTitle">Importo</div></b>
+        <div class="select-wrapper">
+        <span class="input-group-text" id="basic-addon1">€</span>
+        <input type="number" step="0.01" min="0.01"  class="form-control" formControlName="amount">
+    </div>
+    <div *ngIf="transactionForm && transactionForm.get('amount')!.invalid && transactionError == true" class="error-message">
+        <span class="text-danger">Inserisci un importo valido (minimo €0,01).</span>
+      </div>
+</div>
+<!--     <div class="cardSlot3">
+        <b><div class="inputTitle">Categoria</div></b>        
+        
+            <select  class="form-control" formControlName="category">
+              <option>Valore1</option>
+              <option>Valore2</option>
+              <option>Valore3</option>
+            </select>
+    </div> -->
+
+    <div class="cardSlot4">
+        <b><div class="inputTitle">Descrizione</div></b>
+        <textarea name="Text1" cols="40" rows="3"  class="form-control" formControlName="description"></textarea>        
+    </div>
+    <div *ngIf="transactionForm && transactionForm.get('description')!.invalid && transactionError == true" class="error-message">
+        <span class="text-danger">Questo campo è obbligatorio.</span>
+      </div>
+
+    <div class="cardSlot5">        
+    <button class="button-40" role="button" (click)="transaction()">Invia bonifico</button>
+    </div>
+
+</div>
+</form>

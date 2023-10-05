@@ -19,4 +19,20 @@ export class JwtService {
   removeToken() {
     localStorage.removeItem('authToken');
   }
+
+  hasBankId() {
+    return !!this.getBankId();
+  }
+
+  getBankId() {
+    return localStorage.getItem('bankId');
+  }
+
+  setBankId(bankId: string) {
+    localStorage.setItem('bankId', bankId);
+  }
+
+  removeBankId() {
+    localStorage.removeItem('bankId');
+  }
 }

@@ -1,0 +1,102 @@
+<form [formGroup]="transactionForm">
+    <!--     <div class="atm grid-container">
+    
+        <div class="cardSlotImage">            
+
+        </div> 
+        
+        <div class="cardSlot1">                        
+
+            <button type="button" class="btn btn-success btn-square-md" (click)="pushMoney()">Deposita</button> 
+
+    </div>
+    <div class="cardSlotCenter">                        
+
+<div style=" margin-top: 60px; font-size: 15px;">
+        <div>
+            <label style="color: white;">{{insert}}</label>
+        </div>
+        <div>
+            <label style="color: white; margin-top: 5px;">{{euro}}{{amount}}</label>
+        </div>
+</div>
+</div>
+        <div class="cardSlot2">                        
+
+            <button type="button" class="btn btn-danger btn-square-md" (click)="pullMoney()">Preleva</button>
+
+    </div>
+    
+        <div class="cardSlot3">
+            <div id="container">  
+                <ul id="keyboard">   
+                    <li class="letter" (click)="handleButtonClick(1)">1</li>  
+                    <li class="letter" (click)="handleButtonClick(2)">2</li>  
+                    <li class="letter" (click)="handleButtonClick(3)">3</li>  
+                    <li class="letter clearl" (click)="handleButtonClick(4)">4</li>  
+                    <li class="letter" (click)="handleButtonClick(5)">5</li>  
+                    <li class="letter" (click)="handleButtonClick(6)">6</li>                  
+                    <li class="letter clearl" (click)="handleButtonClick(7)">7</li>  
+                    <li class="letter" (click)="handleButtonClick(8)">8</li>  
+                    <li class="letter" (click)="handleButtonClick(9)">9</li>
+                    <li class="letter clearl" style="background-color: red; font-size: 18px; color: white;" (click)="handleCancelButtonClick()"><b>Annulla</b></li>  
+                    <li class="letter" (click)="handleButtonClick(0)">0</li>
+                    <li class="letter" style="background-color: rgb(227, 196, 15); font-size: 18px; color: white;" (click)="handleDeleteButtonClick()"><b>Cancella</b></li> 
+                </ul>  
+            </div>  
+        </div>
+    </div>
+
+ -->
+
+    <div class="container">
+        <section class="sign">
+            <div class="cardSlotImage"></div>
+        </section>
+        <section class="atm-top"></section>
+        <section class="screen">
+
+            <div>
+                <label style="color: black;">{{insert}}</label>
+            </div>
+            <div>
+                <label style="color: black; margin-top: 5px;">{{euro}}{{amount}}</label>
+            </div>
+
+        </section>
+        <section class="atm-bottom">
+
+            <button type="button" 
+                class="btn btn-success btn-square-md button-deposit" (click)="pushMoney()">Deposita</button>
+            <button type="button" 
+                class="btn btn-danger btn-square-md button-withdraw" (click)="pullMoney()">Preleva</button>
+            <div class="user-buttons">
+                <div id="container-numPad">
+                    <ul id="keyboard">
+                        <li class="letter" (click)="handleButtonClick(1)">1</li>
+                        <li class="letter" (click)="handleButtonClick(2)">2</li>
+                        <li class="letter" (click)="handleButtonClick(3)">3</li>
+                        <li class="letter clearl" (click)="handleButtonClick(4)">4</li>
+                        <li class="letter" (click)="handleButtonClick(5)">5</li>
+                        <li class="letter" (click)="handleButtonClick(6)">6</li>
+                        <li class="letter clearl" (click)="handleButtonClick(7)">7</li>
+                        <li class="letter" (click)="handleButtonClick(8)">8</li>
+                        <li class="letter" (click)="handleButtonClick(9)">9</li>
+                        <li class="letter clearl" style="background-color: red; font-size: 18px; color: white;"
+                            (click)="handleCancelButtonClick()"><b>Annulla</b></li>
+                        <li class="letter" (click)="handleButtonClick(0)">0</li>
+                        <li class="letter" style="background-color: rgb(227, 196, 15); font-size: 18px; color: white;"
+                            (click)="handleDeleteButtonClick()"><b>Cancella</b></li>
+                    </ul>
+                </div>
+            </div>
+
+
+        </section>
+        <section class="atm-base">
+
+        </section>
+    </div>
+
+
+</form>

@@ -8,48 +8,43 @@
         </button>
       </div>
     </div>
-    <div class="col mt-5" *ngIf="account">
-      <div class="row">
-        <div class="col-auto">
-          <div class="label-profile-data mb-2">Nominativo:</div>
-          <div class="label-profile-data mb-2">Data creazione conto:</div>
-          <div class="label-profile-data mb-2">IBAN:</div>
-        </div>
-        <div class="col">
-          <div class="profile-data mb-2">{{account.user.fullName}}</div>
-          <div class="profile-data mb-2">{{account.creationDate | date : 'shortDate'}}</div>
-          <div class="profile-data mb-2">{{account.iban}}</div>
-
-          <button type="button" class="btn btn-change-pass mt-5" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed">
-            Cambia Password
-          </button>
-
-          <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
-            <div class="change-pass-section mt-3">
-              <form [formGroup]="changePassForm">
-                <div class="form-outline mb-2">
-                  <input type="password" placeholder="Vecchia Password" class="form-control" formControlName="oldPass" />
-                </div>
-                <div class="form-outline mb-2">
-                  <input type="password" placeholder="Nuova Password" class="form-control" formControlName="newPass" />
-                </div>
-                <div class="form-outline mb-2">
-                  <input type="password" placeholder="Ripeti nuova Password" class="form-control"
-                    formControlName="repeatNewPass" />
-                </div>
-                <div class="text-danger" *ngIf="changePassError">
-                  {{ changePassError }}
-                </div>
-          
-                <!-- Submit button -->
-                <div class="text-center">
-                  <button type="submit" class="btn" (click)="changePass()" [disabled]="changePassForm.invalid">
-                    Cambia Password
-                  </button>
-                </div>
-              </form>
+    <div class="col">
+      <div class="profile-data">{{account!.user!.fullName}}</div>
+      <div class="profile-data">{{account!.iban}}</div>
+      
+      <button
+        type="button"
+        class="btn"
+        (click)="collapse.toggle()"
+        [attr.aria-expanded]="!isCollapsed"
+      >
+        Cambia Password
+      </button>
+      
+      <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+        <div class="change-pass-section">
+          <form [formGroup]="changePassForm">
+            <div class="form-outline mb-2">
+              <input type="password" placeholder="Vecchia Password" class="form-control" formControlName="oldPass" />
             </div>
-          </div>
+            <div class="form-outline mb-2">
+              <input type="password" placeholder="Nuova Password" class="form-control" formControlName="newPass" />
+            </div>
+            <div class="form-outline mb-2">
+              <input type="password" placeholder="Ripeti nuova Password" class="form-control" formControlName="repeatNewPass" />
+            </div>
+            <div class="text-danger" *ngIf="changePassError">
+              {{ changePassError }}
+            </div>
+        
+            <!-- Submit button -->
+            <div class="text-center">
+              <button type="submit" class="btn" (click)="changePass()" 
+                [disabled]="changePassForm.invalid">
+                Cambia Password
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
