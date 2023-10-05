@@ -11,7 +11,7 @@
 
     <div class="form-floating mb-3">
       <select id="categoryInput" class="form-select" #category (change)="onCategorySelected(category.value)" formControlName="category">
-        <!-- <option selected>Seleziona la categoria</option> -->
+        <!-- <option selected>Nessuna categoria</option> -->
         <option *ngFor="let category of categoryList | async" [value]="category.id">{{category.name}}</option>
       </select>
       <label for="categoryInput">Scegli la categoria</label>

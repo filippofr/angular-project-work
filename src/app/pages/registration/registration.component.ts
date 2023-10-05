@@ -3,13 +3,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject, catchError, takeUntil, throwError } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
-
-export interface SignUpClass{
-  firstName: string;
-  lastName: string;
-  username: string;
-  password: string;
-}
+import { confPassValidator } from 'src/app/validators/confirm-pass-validator';
+import { passwordValidator } from 'src/app/validators/password-validator';
 
 @Component({
   selector: 'app-registration',
@@ -22,12 +17,21 @@ export class RegistrationComponent implements OnDestroy, OnInit {
     firstName: ['', {validators: Validators.required}],
     lastName: ['', {validators: Validators.required}],
     username: ['', {validators: Validators.required}],
-    password: ['', {validators: Validators.required}],
+    password: ['', {
+      validators: [
+        Validators.required,
+        Validators.min(8),
+        passwordValidator()
+      ]
+    }],
     passwordRep: ['', {validators: Validators.required}],
+  }, {
+    validators: [confPassValidator()] 
   })
   private destroyed$ = new Subject<void>();
 
-  registrationError='';
+  registrationError = '';
+  registrationHasError = false;
 
   constructor(protected fb: FormBuilder, private router: Router, private authSrv: AuthService,){}
 
@@ -42,9 +46,11 @@ export class RegistrationComponent implements OnDestroy, OnInit {
         })
       )
       .subscribe(()=>{
-        this.router.navigate(['/home'])
+        this.router.navigate(['/login'])
       })
       
+    } else {
+      this.registrationHasError = true;
     }
   }
 
