@@ -8,23 +8,22 @@
 
         <img class="image" src="../../../assets/images/logo-bianco.svg" alt="">
         <div>
-        <label class="amount" *ngIf="lastTransaction">Saldo:</label>
+          <label class="amount" *ngIf="lastTransaction">Saldo:</label>
         </div>
-        <div>          
-          <label style="text-align: left;" class="balance" *ngIf="lastTransaction"><b>{{lastTransaction.balance | currency}}</b></label>
+        <div>
+          <label style="text-align: left;" class="balance" *ngIf="lastTransaction"><b>{{lastTransaction.balance |
+              currency}}</b></label>
         </div>
         <img class="chip" src="../../../assets/images/chip.svg" alt="">
 
-        <label class="iban" *ngIf="account"><b>{{account.iban}}</b></label>
+        <label class="iban" *ngIf="account">{{account.iban}}</label>
 
 
         <img class="wireless" src="../../../assets/images/wireless.svg" alt="">
 
-      
+
       </div>
-      <button class="btn btn-export" type="button" (click)="export()">
-        Esporta movimenti <fa-icon class="export-icon" [icon]="['far','file-excel']"></fa-icon>
-      </button>
+      
     </div>
     <div class="col trans-col">
       <div class="filter">
@@ -36,6 +35,9 @@
             <app-transactions-filter (filters)="setFilters($event)"></app-transactions-filter>
           </div>
         </div>
+        <button class="btn btn-export" type="button" (click)="export()">
+          Esporta movimenti <fa-icon class="export-icon" [icon]="['far','file-excel']"></fa-icon>
+        </button>
       </div>
       
       <div class="trans-list">
@@ -43,10 +45,11 @@
           <app-transaction-card [transaction]="trans"></app-transaction-card>
         </div>
       </div>
-      
 
-      <div class="trans-pages" >
-        <ngb-pagination [collectionSize]="transactions.length" [(page)]="page" [pageSize]="pageSize" [directionLinks]="false"></ngb-pagination>
+
+      <div class="trans-pages">
+        <ngb-pagination [collectionSize]="transactions.length" [(page)]="page" [pageSize]="pageSize"
+          [directionLinks]="false"></ngb-pagination>
       </div>
     </div>
   </div>

@@ -40,23 +40,22 @@
 .iban {
     position: absolute;
     text-align: left;
-    bottom: 20px;
-    left: 30px;
-    margin-bottom: 0.5rem;
-    margin-left: 13.5rem;
+    bottom: 1rem;
+    right: 1.5rem;
     color: white;
+    font-weight: bold;
 }
 
 .btn-export {
-    display: flex;
+    display: inline;
     border-radius: 5px;
-    background-color: hsl(181, 62%, 46%);
+    background-color: hsl(209, 51%, 32%);
     color: white;
-    margin: 30px 0 auto auto;
+    margin-left: 2rem;
 }
 
 .btn-export:active {
-    background-color: hsl(181, 43%, 63%);
+    background-color: hsla(209, 51%, 32%, 0.681);
     color: white;
 }
 

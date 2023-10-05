@@ -1,18 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { authGuard } from './guards/auth.guard';
+import { AddTransactionComponent } from './pages/add-transaction/add-transaction.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { LoginComponent } from './pages/login/login.component';
 import { MenuActionsComponent } from './pages/menu-actions/menu-actions.component';
+import { PhoneTopUpComponent } from './pages/phone-top-up/phone-top-up.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
-import { HomeComponent } from './pages/home/home.component';
-import { authGuard } from './guards/auth.guard';
-import { ProfileComponent } from './pages/profile/profile.component';
 import { TransactionComponent } from './pages/transaction/transaction.component';
-import { PhoneTopUpComponent } from './pages/phone-top-up/phone-top-up.component';
-import { AddTransactionComponent } from './pages/add-transaction/add-transaction.component';
-import { MenuActionsComponent } from './pages/menu-actions/menu-actions.component';
 import { TransactionsComponent } from './pages/transactions/transactions.component';
 
 const routes: Routes = [

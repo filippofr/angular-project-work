@@ -57,8 +57,10 @@ a:any
           })
         )
         .subscribe(() => {
+          this.authSrv.userLogdIn();
           this.router.navigate(['menu-actions'])
         });
     }
   }
 }
+

@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import { Injectable, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { BehaviorSubject, catchError, map, of, tap } from "rxjs";
 import { BankAccount } from "../interfaces/bank-account";
@@ -8,7 +8,7 @@ import { JwtService as JWTService } from "./jwt.service";
 
 
 @Injectable({providedIn: 'root'})
-export class AuthService {
+export class AuthService implements OnInit {
   private _currentUser$ = new BehaviorSubject<User | null>(null);
   currentUser$ = this._currentUser$.asObservable();
 
@@ -27,6 +27,14 @@ export class AuthService {
     
   }
 
+
+  ngOnInit(): void {
+    if (this.isLoggedIn()) {
+      this.fetchUser();
+      this.currentAccount();
+    }
+  }
+
   registration(firstName: string, lastName: string, username: string, password: string, confPassword: string) {
     return this.http.post<{ user: User, token: string }>('api/register', { firstName, lastName, username, password, confPassword })
   }
@@ -36,18 +44,19 @@ export class AuthService {
   }
 
   login(username: string, password: string) {
-    this.http.post<{user: User, account: BankAccount, token: string}>('https://projectworkits.azurewebsites.net/api/login', {username, password}).pipe(
-      tap(res => this._currentAccount$.next(res.account)),
-      tap(res => this.jwtSrv.setToken(res.token)),
-      tap(res => this._currentUser$.next(res.user)),
-      map(res => res.user)
-    );
+    // this.http.post<{user: User, account: BankAccount, token: string}>('https://projectworkits.azurewebsites.net/api/login', {username, password}).pipe(
+    //   tap(res => this._currentAccount$.next(res.account)),
+    //   tap(res => this.jwtSrv.setToken(res.token)),
+    //   tap(res => this._currentUser$.next(res.user)),
+    //   map(res => res.user)
+    // );
     return this.http.post<{user: User, token: string}>('https://projectworkits.azurewebsites.net/api/login', {username, password})
       .pipe(
-        tap(res => this.jwtSrv.setBankId(res.user.id)),
+        tap(res => this.jwtSrv.setBankId(res.user.id!)),
         tap(res => this.jwtSrv.setToken(res.token)),
         tap(res => this._currentUser$.next(res.user)),
         map(res => res.user)
+        
       );
   }
 
@@ -60,6 +69,11 @@ export class AuthService {
 
   update(oldPassword: string, newPassword: string) {
     return this.http.post<{message: string}>('https://projectworkits.azurewebsites.net/api/reset', {oldPassword, newPassword})
+  }
+
+  userLogdIn() {
+    this.fetchUser();
+    this.currentAccount();
   }
 
   private fetchUser() {
