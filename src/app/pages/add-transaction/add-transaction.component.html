@@ -1,6 +1,5 @@
-
- <form [formGroup]="transactionForm">
-    <div class="atm grid-container">
+<form [formGroup]="transactionForm">
+    <!--     <div class="atm grid-container">
     
         <div class="cardSlotImage">            
 
@@ -46,16 +45,58 @@
                 </ul>  
             </div>  
         </div>
-
-<!--         <div class="cardSlot4">
-
-            <b><div class="inputTitle">Descrizione</div></b>
-            <textarea name="Text1" cols="40" rows="3"  class="form-control" formControlName="description"></textarea>  
-   
-
-        </div> -->
-    
-
-    
     </div>
-    </form>
+
+ -->
+
+    <div class="container">
+        <section class="sign">
+            <div class="cardSlotImage"></div>
+        </section>
+        <section class="atm-top"></section>
+        <section class="screen">
+
+            <div>
+                <label style="color: black;">{{insert}}</label>
+            </div>
+            <div>
+                <label style="color: black; margin-top: 5px;">{{euro}}{{amount}}</label>
+            </div>
+
+        </section>
+        <section class="atm-bottom">
+
+            <button type="button" style="height: 50px; width: 100px;"
+                class="btn btn-success btn-square-md button-deposit" (click)="pushMoney()">Deposita</button>
+            <button type="button" style="height: 50px; width: 100px;"
+                class="btn btn-danger btn-square-md button-withdraw" (click)="pullMoney()">Preleva</button>
+            <div class="user-buttons">
+                <div id="container-numPad">
+                    <ul id="keyboard">
+                        <li class="letter" (click)="handleButtonClick(1)">1</li>
+                        <li class="letter" (click)="handleButtonClick(2)">2</li>
+                        <li class="letter" (click)="handleButtonClick(3)">3</li>
+                        <li class="letter clearl" (click)="handleButtonClick(4)">4</li>
+                        <li class="letter" (click)="handleButtonClick(5)">5</li>
+                        <li class="letter" (click)="handleButtonClick(6)">6</li>
+                        <li class="letter clearl" (click)="handleButtonClick(7)">7</li>
+                        <li class="letter" (click)="handleButtonClick(8)">8</li>
+                        <li class="letter" (click)="handleButtonClick(9)">9</li>
+                        <li class="letter clearl" style="background-color: red; font-size: 18px; color: white;"
+                            (click)="handleCancelButtonClick()"><b>Annulla</b></li>
+                        <li class="letter" (click)="handleButtonClick(0)">0</li>
+                        <li class="letter" style="background-color: rgb(227, 196, 15); font-size: 18px; color: white;"
+                            (click)="handleDeleteButtonClick()"><b>Cancella</b></li>
+                    </ul>
+                </div>
+            </div>
+
+
+        </section>
+        <section class="atm-base">
+
+        </section>
+    </div>
+
+
+</form>

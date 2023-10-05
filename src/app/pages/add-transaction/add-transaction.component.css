@@ -54,8 +54,7 @@
 
 /* Assicurati che la larghezza dell'immagine sia controllata dal contenuto */
 .cardSlotImage {
-  grid-area: header;
-  background-image: url('../../../assets/images/logo.svg');
+  background-image: url('../../../assets/images/logo-bianco.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -182,8 +181,12 @@ textarea{
 }
 
 /* tastierino numerico */
-#container {  
-  width: 760px;  
+#container-numPad {  
+  width: 760px;
+  position: absolute;
+ margin-left: 8.75rem;
+ margin-right: 9rem;
+ margin-top: 8rem;
   }   
   #keyboard {  
   margin: 0;  
@@ -193,7 +196,7 @@ textarea{
       #keyboard li {  
       float: left;  
       margin: 0 5px 5px 0;  
-      width: 200px;  
+      width: 120px;  
       height: 60px;  
       font-size: 24px;
       line-height: 60px;  
@@ -249,3 +252,154 @@ textarea{
           border-color: #e5e5e5;  
           cursor: pointer;  
           }  
+
+
+
+
+
+
+
+
+
+
+          
+.container {
+  width: 800px;    
+  /* width: 500px; */
+  background: linear-gradient(180deg, rgba(71,71,71,1) 0%, rgba(167,172,180,1) 100%);    
+  border: 15px solid gray;
+  font-family: 'Press Start 2P', cursive;
+  border-radius: 2%;
+  box-shadow: 0px 5px 15px 10px rgba(0,0,0,0.48);
+}
+
+.sign{
+  background: radial-gradient(circle, rgb(136, 136, 136) 0%, rgb(81, 93, 106)100%);
+  box-shadow: darkblue;
+  padding: 10%;
+  box-shadow: 1px 18px 9px -2px rgba(48, 48, 48, 0.75);
+}
+.sign>h1 {
+  color:rgb(0, 216, 0);
+  animation: blink 2s linear infinite;
+}
+.cam {
+  height: 25px;
+  width: 400px;
+  border-radius: 50%;
+  margin: 0 45%;
+  background-image: url('../../../assets/images/logo.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+}
+@keyframes blink{
+  0%{opacity: 0.5;}
+  25%{opacity: 1;}
+  50%{opacity: 0.5;}
+  75%{opacity: 1;}
+  100%{opacity: 0.5;}
+  }
+
+.atm-top {
+  border-top: 50px solid rgb(79, 79, 79);
+  border-left: 48px solid transparent;
+  border-right: 48px solid transparent;
+  height: 0;
+  width: 100%;
+}
+.screen{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin: 0 10%;
+  padding: 5%;
+  height: 250px;
+  border-radius: 2.5px;
+  background: radial-gradient(circle, rgba(250,250,250,1) 0%, rgb(166, 205, 250) 100%);
+}
+.screen>input{
+  margin: 5%;
+}
+
+.alerts, .warning {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  font-size: 10px;
+  margin-top: 10px;
+}
+
+.atm-bottom {
+  position: relative;
+border-bottom: 100px solid #555;
+border-left: 48px solid transparent;
+border-right: 48px solid transparent;
+height: 0;
+width: 100%;
+
+}
+.user-buttons{
+  display: grid;
+  padding-top: 10%;
+  gap: 5%;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.withdraw-btn{
+  background-color: red;
+  display: inline-block; 
+  transform: skew(-15deg);
+  box-shadow: 0px 2px 2px 1px rgba(0,0,0,0.48);
+}
+
+.deposit-btn{
+  background-color: green;
+  display: inline-block; 
+  transform: skew(15deg);
+  box-shadow: 0px 2px 2px 1px rgba(0,0,0,0.48);
+}
+
+.atm-base {
+  margin: -1% 10%;  
+  width: 747px; 
+  height: 300px;
+  margin-left: 0rem;
+  margin-top: 0rem;
+  margin-bottom: 10px;
+  background: linear-gradient(180deg, rgb(55, 55, 55) 0%, rgb(116, 117, 118) 100%);    
+  box-shadow: 0px 5px 10px 5px rgba(0,0,0,0.48);
+  z-index: -10;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10%;
+}
+.atm-base>div{
+  position: absolute;
+  border: 2px solid rgb(67, 67, 67);
+  margin: 25%;
+  padding: 1%;
+  width: 50%;
+  box-shadow: 0px 5px 10px 5px rgba(0,0,0,0.48) inset;
+  z-index: 10;
+  font-family: 'Press Start 2P', cursive;
+  border-radius: 2%;
+  font-size: 10px;
+}
+
+.button-deposit{
+  position: absolute;
+  display: inline;
+  top: 14rem;
+  left: .15rem;
+}
+
+
+.button-withdraw{
+  position: absolute;
+  display: inline;
+  top: 14rem;
+  right: .15rem;
+  
+}

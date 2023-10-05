@@ -36,6 +36,8 @@ export class AddTransactionComponent  implements OnInit {
       if(numberAmount !== null || numberAmount !== undefined || numberAmount[0] !== "0"){
       const description = "Deposito bancomat";
       const category = "650c36dd4fbb7705e5fe4fd3";
+      
+      this.transactionForm.reset();
       this.addSrv.addMoney(category!, numberAmount, description!)
       this.insert = "Hai depositato";
     }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { catchError, throwError } from 'rxjs';
+import { Subject, catchError, debounceTime, throttleTime, throwError } from 'rxjs';
 import { PhoneTopUpService } from 'src/app/services/phone-top-up.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class PhoneTopUpComponent implements OnInit {
     phoneServiceProvider: ['', {validators: Validators.required}]
   })
 
-  phoneError: boolean = false;
+  phoneError: boolean = false;  
 
   constructor(private phoneSrv: PhoneTopUpService,
      protected fb: FormBuilder,
@@ -28,12 +28,16 @@ export class PhoneTopUpComponent implements OnInit {
    icona: string = "";
    ngOnInit(){    
     this.icona = '../../../assets/images/internet.svg';
+
    }
    
    phoneTopUp(){
     if(this.phoneTopUpForm.valid){
       const { phoneNumber, amount, phoneServiceProvider } = this.phoneTopUpForm.value; 
       const numberAmount = parseFloat(amount!);
+
+      this.phoneTopUpForm.reset();
+      
       this.phoneSrv.phoneTopUp(phoneNumber!, numberAmount, phoneServiceProvider!)
       .pipe(
         catchError(err => {

@@ -27,7 +27,8 @@ export class TransactionComponent {
   transaction(){
     if(this.transactionForm.valid){
       const { iban, amount, description } = this.transactionForm.value; 
-      const numberAmount = parseFloat(amount!);
+      const numberAmount = parseFloat(amount!);      
+      this.transactionForm.reset();
       this.transSrv.transaction(iban!, numberAmount, description!)
     }
     else{
