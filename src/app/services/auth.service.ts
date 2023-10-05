@@ -20,8 +20,8 @@ export class AuthService {
         }
      }
 
-     registration(firstName: string, lastName: string, username:string, password: string){
-      return this.http.post<{user: User, token: string}>('api/register', {firstName, lastName, username, password })
+     registration(firstName: string, lastName: string, username:string, password: string, confPassword: string){
+      return this.http.post<{user: User, token: string}>('api/register', {firstName, lastName, username, password, confPassword })
      }
 
      private fetchUser() {

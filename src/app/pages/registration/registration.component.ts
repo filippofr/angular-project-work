@@ -26,16 +26,18 @@ export class RegistrationComponent implements OnDestroy, OnInit {
 
   registration(){
     if (this.registerForm.valid){
-      const {firstName, lastName, username, password } = this.registerForm.value;
-      this.authSrv.registration(firstName!, lastName!, username!, password!).pipe(
+      const {firstName, lastName, username, password, passwordRep } = this.registerForm.value;
+      this.authSrv.registration(firstName!, lastName!, username!, password!, passwordRep!).pipe(
         catchError(err => {
           this.registrationError = err.error.message;
+          console.log(this.registerForm)
           return throwError(()=> err)
         })
       )
       .subscribe(()=>{
         this.router.navigate(['/home'])
       })
+      
     }
   }
 
