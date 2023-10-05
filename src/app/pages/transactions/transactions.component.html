@@ -22,6 +22,7 @@
 
       
       </div>
+      
       <button class="btn btn-export rightButton" type="button" (click)="export()">
         Esporta movimenti<img class="export-icon" src="../../../assets/images/icon-excel.svg" alt="">
       </button>
@@ -42,12 +43,10 @@
         <div *ngFor="let trans of transactions | slice: (page-1) * pageSize : page * pageSize">
           <app-transaction-card [transaction]="trans"></app-transaction-card>
         </div>
-      </div>
-      
-
+      </div>    
       <div class="trans-pages" >
         <ngb-pagination [collectionSize]="transactions.length" [(page)]="page" [pageSize]="pageSize" [directionLinks]="false"></ngb-pagination>
       </div>
-    </div>
+    </div> 
   </div>
 </div>

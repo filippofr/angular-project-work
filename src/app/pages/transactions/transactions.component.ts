@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { BankAccount } from 'src/app/interfaces/bank-account';
 import { Transaction } from 'src/app/interfaces/transaction';
 import { AuthService } from 'src/app/services/auth.service';
@@ -11,6 +11,8 @@ import * as XLSX from 'xlsx';
   styleUrls: ['./transactions.component.css']
 })
 export class TransactionsComponent {
+
+
 
   account!: BankAccount;
 
@@ -26,7 +28,7 @@ export class TransactionsComponent {
     private bankAccSrv: BankAccountService
   ) {
     authSrv.currentAccount$.subscribe(acc => {
-      if (acc) {
+      if (acc) { 
         this.account = acc;
         bankAccSrv.listTransaction(acc.id!).subscribe(trans => {
           if (trans) {
@@ -38,7 +40,8 @@ export class TransactionsComponent {
     })
   }
 
-
+ 
+ 
   setFilters(value: any) {
     this.bankAccSrv.listTransaction(
       this.account.id!,
@@ -74,5 +77,7 @@ export class TransactionsComponent {
     /* save to file */
     XLSX.writeFile(wb, this.fileName);
   }
+
+
 
 }

@@ -30,6 +30,8 @@ import { TransactionsComponent } from './pages/transactions/transactions.compone
 import { TransactionEntrataPipe } from './pipes/transaction-entrata.pipe';
 import { TransactionUscitaPipe } from './pipes/transaction-uscita.pipe';
 
+
+
 registerLocaleData(localeIt, 'it-IT')
 
 @NgModule({
@@ -60,7 +62,8 @@ registerLocaleData(localeIt, 'it-IT')
     ReactiveFormsModule,
     FontAwesomeModule,
     BrowserAnimationsModule,
-    CurrencyPipe
+    CurrencyPipe,
+    
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

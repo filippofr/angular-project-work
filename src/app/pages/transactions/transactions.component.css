@@ -48,6 +48,9 @@
 }
 
 .btn-export {
+    position: absolute;
+    right: 7.6rem;
+    top: 6rem;
     display: flex;
     border-radius: 5px;
     background-color: hsl(181, 62%, 46%);
