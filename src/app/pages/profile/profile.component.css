@@ -8,9 +8,11 @@
   /* margin-top: 120px; */
   padding-top: 120px;
   width: 1000px;
+
+  z-index: 10;
 }
 .bg-class{
-  position: relative;
+  /* position: relative; */
   z-index: -1000;
   height: 92%;
 }
@@ -44,15 +46,19 @@ input {
   margin-left: auto;
   margin-right: auto;
 }
+.text{
+  color: green;
+}
 
 .bg-right{
   position: absolute;
   z-index: -1;
-  top: 0;
+  top: 67px;
   right: 0;
 }
 .bg-right-img{ 
   height: 35rem;
+  z-index: -20;
 }
 .bg-left{
   position: absolute;
@@ -62,4 +68,5 @@ input {
 }
 .bg-left-img{ 
   height: 35rem;
+  z-index: -20;
 }

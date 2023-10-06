@@ -1,10 +1,5 @@
 <div class="bg-class">
-  <div class="bg-left">
-    <img class="bg-left-img" src="../../../assets/images/bg-modified-transfer.svg" alt="">
-  </div>
-  <div class="bg-right">
-    <img class="bg-right-img" src="../../../assets/images/bg-inverted.svg" alt="">
-  </div>
+  
   <div class="container text-center">
     <div class="row align-items-start">
       <div class="col">
@@ -40,14 +35,25 @@
                       formControlName="oldPass" />
                   </div>
                   <div class="form-outline mb-2">
-                    <input type="password" placeholder="Nuova Password" class="form-control" formControlName="newPass" />
+                    <input type="password" placeholder="Nuova Password" class="form-control" formControlName="password" />
+                  </div>
+                  <div class="text-danger"
+                    *ngIf="changePassForm.get('password')!.hasError('min') || changePassForm.get('password')!.hasError('weakPassword')">
+                    La password deve essere lunga minimo 8 caratteri e deve contenere almeno 1 maiuscola, 1 minuscola, 1 numero, 1
+                    carattere speciale
                   </div>
                   <div class="form-outline mb-2">
                     <input type="password" placeholder="Ripeti nuova Password" class="form-control"
-                      formControlName="repeatNewPass" />
+                      formControlName="passwordRep" />
+                  </div>
+                  <div class="text-danger" *ngIf="changePassForm.errors && changePassForm.errors['passwordMissmatch']">
+                    Le password devono essere uguali
                   </div>
                   <div class="text-danger" *ngIf="changePassError">
                     {{ changePassError }}
+                  </div>
+                  <div class="text" *ngIf="changePassResult">
+                    {{ changePassResult }}
                   </div>
   
                   <div class="text-center">
@@ -62,5 +68,11 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="bg-left">
+    <img class="bg-left-img" src="../../../assets/images/bg-modified-transfer.svg" alt="">
+  </div>
+  <div class="bg-right">
+    <img class="bg-right-img" src="../../../assets/images/bg-inverted.svg" alt="">
   </div>
 </div>

@@ -3,6 +3,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Subject, catchError, takeUntil, throwError } from 'rxjs';
 import { BankAccount } from 'src/app/interfaces/bank-account';
 import { AuthService } from 'src/app/services/auth.service';
+import { confPassValidator } from 'src/app/validators/confirm-pass-validator';
+import { passwordValidator } from 'src/app/validators/password-validator';
 
 @Component({
   selector: 'app-profile',
@@ -13,22 +15,29 @@ export class ProfileComponent implements OnInit, OnDestroy {
   account!: BankAccount;
   isCollapsed = true;
   changePassError = '';
+  changePassResult = '';
 
   changePassForm = this.fb.group({
-    oldPass: ['', {validators: [Validators.required]}],
-    newPass: ['', {validators: [Validators.required]}],
-    repeatNewPass: ['', {validators: [Validators.required]}]
+    oldPass: ['', { validators: [Validators.required] }],
+    password: ['', {
+      validators: [Validators.required,
+      Validators.min(8),
+      passwordValidator()]
+    }],
+    passwordRep: ['', { validators: [Validators.required] }]
+  }, {
+    validators: [confPassValidator()]
   })
 
   private destroyed$ = new Subject<void>();
 
   constructor(private authSrv: AuthService,
-              protected fb: FormBuilder){
+    protected fb: FormBuilder) {
     authSrv.currentAccount$.subscribe(account => {
-      if(account){
+      if (account) {
         this.account = account
       }
-      
+
     })
   }
 
@@ -47,20 +56,20 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.destroyed$.complete();
   }
 
-  changePass(){
-    if(this.changePassForm.valid){
-      const { oldPass, newPass } = this.changePassForm.value;
-      this.authSrv.update(oldPass!, newPass!)
+  changePass() {
+    if (this.changePassForm.valid) {
+      const { oldPass, password } = this.changePassForm.value;
+      this.authSrv.update(oldPass!, password!)
         .pipe(
           catchError(err => {
             this.changePassError = err.error.message;
-            return throwError(() => err);   
+            return throwError(() => err);
           })
         )
-        .subscribe(res =>{
-          this.changePassError = res.message;
+        .subscribe(res => {
+          this.changePassResult = res.message;
         })
     }
-    
+
   }
 }
