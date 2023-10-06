@@ -3,9 +3,13 @@
   <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
 </div>
 <div class="modal-body">
-  <p>{{ transaction.date }}</p>
-  <p>{{ transaction.category.name }}</p>
-  <p>{{ transaction.description }}</p>
-  <p *ngIf="transaction.category.type === 'Uscita'">{{ transaction.amount | transactionUscita}}</p>
-  <p *ngIf="transaction.category.type === 'Entrata'">{{ transaction.amount | transactionEntrata}}</p>
+  <div class="label">Data Movimento:</div>
+  <p class="desc">{{ transaction.date | date: 'short' : undefined : 'it-IT'}}</p>
+  <div class="label">Categoria:</div>
+  <p class="desc">{{ transaction.category.name }}</p>
+  <div class="label">Descrizione:</div>
+  <p class="desc">{{ transaction.description }}</p>
+  <div class="label">Importo:</div>
+  <p class="desc" *ngIf="transaction.category.type === 'Uscita'">{{ transaction.amount | transactionUscita}}</p>
+  <p class="desc" *ngIf="transaction.category.type === 'Entrata'">{{ transaction.amount | transactionEntrata}}</p>
 </div>
