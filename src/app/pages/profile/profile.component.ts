@@ -48,6 +48,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       )
       .subscribe(() => {
         this.changePassError = '';
+        this.changePassResult = '';
       });
   }
 

@@ -28,6 +28,8 @@ export class TransactionsComponent implements OnInit, OnDestroy {
 
   fileName = 'MovimentiEasybank.xlsx';
 
+  listaVuota = false;
+
 
   private destroyed$ = new Subject<void>();
 
@@ -68,6 +70,10 @@ export class TransactionsComponent implements OnInit, OnDestroy {
       .subscribe(trans => {
         if (trans) {
           this.transactions = trans;
+          this.listaVuota = false;
+        }
+        if (trans.length === 0) {
+          this.listaVuota = true;
         }
       })
   }

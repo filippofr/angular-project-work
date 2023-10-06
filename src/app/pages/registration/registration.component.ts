@@ -14,9 +14,14 @@ import { passwordValidator } from 'src/app/validators/password-validator';
 export class RegistrationComponent implements OnDestroy, OnInit {
 
   registerForm = this.fb.group({
-    firstName: ['', {validators: Validators.required}],
-    lastName: ['', {validators: Validators.required}],
-    username: ['', {validators: Validators.required}],
+    firstName: ['', { validators: Validators.required }],
+    lastName: ['', { validators: Validators.required }],
+    username: ['', {
+      validators: [
+        Validators.required,
+        Validators.email
+      ]
+    }],
     password: ['', {
       validators: [
         Validators.required,
@@ -24,31 +29,31 @@ export class RegistrationComponent implements OnDestroy, OnInit {
         passwordValidator()
       ]
     }],
-    passwordRep: ['', {validators: Validators.required}],
+    passwordRep: ['', { validators: Validators.required }],
   }, {
-    validators: [confPassValidator()] 
+    validators: [confPassValidator()]
   })
   private destroyed$ = new Subject<void>();
 
   registrationError = '';
   registrationHasError = false;
 
-  constructor(protected fb: FormBuilder, private router: Router, private authSrv: AuthService,){}
+  constructor(protected fb: FormBuilder, private router: Router, private authSrv: AuthService,) { }
 
-  registration(){
-    if (this.registerForm.valid){
-      const {firstName, lastName, username, password, passwordRep } = this.registerForm.value;
+  registration() {
+    if (this.registerForm.valid) {
+      const { firstName, lastName, username, password, passwordRep } = this.registerForm.value;
       this.authSrv.registration(firstName!, lastName!, username!, password!, passwordRep!).pipe(
         catchError(err => {
-          this.registrationError = err.error.message;
-          console.log(this.registerForm)
-          return throwError(()=> err)
+          this.registrationError = 'Username in uso';
+          console.log(this.registrationError)
+          return throwError(() => err)
         })
       )
-      .subscribe(()=>{
-        this.router.navigate(['/login'])
-      })
-      
+        .subscribe(() => {
+          this.router.navigate(['/login'])
+        })
+
     } else {
       this.registrationHasError = true;
     }
@@ -56,14 +61,14 @@ export class RegistrationComponent implements OnDestroy, OnInit {
 
   ngOnInit(): void {
     this.registerForm.valueChanges
-    .pipe(
-      takeUntil(this.destroyed$)
-    )
-    .subscribe(()=> {
-      this.registrationError='';
-    });
+      .pipe(
+        takeUntil(this.destroyed$)
+      )
+      .subscribe(() => {
+        this.registrationError = '';
+      });
   }
-  
+
 
   ngOnDestroy(): void {
     this.destroyed$.next();

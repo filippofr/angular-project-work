@@ -41,6 +41,9 @@
       </div>
       
       <div class="trans-list">
+        <div class="lista-vuota" *ngIf="listaVuota">
+          Nessun Movimento da visualizzare
+        </div>
         <div *ngFor="let trans of transactions | slice: (page-1) * pageSize : page * pageSize">
           <app-transaction-card [transaction]="trans"></app-transaction-card>
         </div>
