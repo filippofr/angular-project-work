@@ -4,11 +4,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CurrencyPipe, registerLocaleData } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import localeIt from '@angular/common/locales/it';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faCalendarDays } from '@fortawesome/free-regular-svg-icons';
-import { faArrowRight, faFilter, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarDays, faFileExcel } from '@fortawesome/free-regular-svg-icons';
+import { faArrowRight, faFilter, faInfo, faMobile, faPhone, faShield, faUser } from '@fortawesome/free-solid-svg-icons';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,7 +19,6 @@ import { TransactionCardComponent } from './components/transaction-card/transact
 import { TransactionsFilterComponent } from './components/transactions-filter/transactions-filter.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { AddTransactionComponent } from './pages/add-transaction/add-transaction.component';
-import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { MenuActionsComponent } from './pages/menu-actions/menu-actions.component';
 import { PhoneTopUpComponent } from './pages/phone-top-up/phone-top-up.component';
@@ -29,19 +28,21 @@ import { TransactionComponent } from './pages/transaction/transaction.component'
 import { TransactionsComponent } from './pages/transactions/transactions.component';
 import { TransactionEntrataPipe } from './pipes/transaction-entrata.pipe';
 import { TransactionUscitaPipe } from './pipes/transaction-uscita.pipe';
-
-
+import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 
 registerLocaleData(localeIt, 'it-IT')
+
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistrationComponent,
     LoginComponent,
+    LandingPageComponent,
     NavBarComponent,
     NavUserComponent,
-    HomeComponent,
     ProfileComponent,
     TransactionComponent,
     PhoneTopUpComponent,
@@ -63,7 +64,12 @@ registerLocaleData(localeIt, 'it-IT')
     FontAwesomeModule,
     BrowserAnimationsModule,
     CurrencyPipe,
-    
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule,
+    NgbModule,
+    FontAwesomeModule,
+
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
@@ -75,6 +81,17 @@ registerLocaleData(localeIt, 'it-IT')
 })
 export class AppModule {
   constructor(library: FaIconLibrary) {
-    library.addIcons(faUser, faArrowRight, faCalendarDays, faFilter);
+    library.addIcons(
+      faUser,
+      faArrowRight,
+      faCalendarDays,
+      faFilter,
+      faFileExcel,
+      faInfo,
+      faMobile,
+      faShield,
+      faPhone
+    );
+
   }
 }

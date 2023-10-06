@@ -1,0 +1,11 @@
+.btn,
+.btn:enabled {
+    background-color: hsl(181, 62%, 46%);
+    color: white;
+}
+
+.btn:disabled,
+.btn:active {
+    background-color: hsl(181, 43%, 63%);
+    color: white;
+}

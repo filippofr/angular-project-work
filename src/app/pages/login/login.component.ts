@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject, takeUntil, catchError, throwError } from 'rxjs';
@@ -9,14 +9,14 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit, OnDestroy {
   loginForm = this.fb.group({
     username: ['', { validators: Validators.required }],
     password: ['', { validators: Validators.required }]
   })
 
   loginError = '';
-
+a:any
   private destroyed$ = new Subject<void>();
 
   constructor(protected fb: FormBuilder,
@@ -33,8 +33,9 @@ export class LoginComponent {
         this.loginError = '';
       });
 
-    setTimeout(() => {
+    this.a = setTimeout(() => {
       this.router.navigate(['home']);
+      // window.location.reload();
     }, 30000);  //30s
     
   }
@@ -42,6 +43,7 @@ export class LoginComponent {
   ngOnDestroy(): void {
     this.destroyed$.next();
     this.destroyed$.complete();
+    clearTimeout(this.a)
   }
 
   login() {
@@ -55,8 +57,10 @@ export class LoginComponent {
           })
         )
         .subscribe(() => {
+          this.authSrv.userLogdIn();
           this.router.navigate(['menu-actions'])
         });
     }
   }
 }
+

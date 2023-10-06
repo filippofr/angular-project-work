@@ -1,7 +1,6 @@
-export interface User {
-  id: string;
-  firstName: string;
-  lastName: string;
-  fullName: string;
-  picture?: string;
+export interface User{
+    id?: string;
+    firstName: string;
+    lastName: string;
+    fullName?: string;
 }

@@ -24,7 +24,7 @@ export class TransactionsFilterComponent {
 
   filterForm = this.fb.group({
     record: ['', {validators: Validators.min(1)}],
-    category: ['Seleziona la categoria'],
+    category: ['Nessuna categoria'],
 		firstDate: [null],
 		secondDate: [null]
 	}, {

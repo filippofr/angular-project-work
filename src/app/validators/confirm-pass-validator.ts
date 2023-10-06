@@ -4,7 +4,7 @@ export function confPassValidator(): Validators {
     return (form: FormGroup): ValidationErrors | null => {
 
         const pass = form.get("password")?.value;
-        const confPass = form.get("confPassword")?.value;
+        const confPass = form.get("passwordRep")?.value;
 
         if(confPass) {
             const validate = pass == confPass;

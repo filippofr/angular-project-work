@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
 import { BankAccount } from 'src/app/interfaces/bank-account';
 import { Transaction } from 'src/app/interfaces/transaction';
 import { AuthService } from 'src/app/services/auth.service';
@@ -10,9 +11,12 @@ import * as XLSX from 'xlsx';
   templateUrl: './transactions.component.html',
   styleUrls: ['./transactions.component.css']
 })
-export class TransactionsComponent {
-
-
+export class TransactionsComponent implements OnInit, OnDestroy {
+  constructor(private authSrv: AuthService,
+    private bankAccSrv: BankAccountService
+  ) {
+    
+  }
 
   account!: BankAccount;
 
@@ -24,27 +28,38 @@ export class TransactionsComponent {
 
   fileName = 'MovimentiEasybank.xlsx';
 
-  constructor(private authSrv: AuthService,
-    private bankAccSrv: BankAccountService
-  ) {
-    authSrv.currentAccount$.subscribe(acc => {
-      if (acc) { 
-        this.account = acc;
-        bankAccSrv.listTransaction(acc.id!).subscribe(trans => {
-          if (trans) {
-            this.transactions = trans;
-            this.lastTransaction = trans[0];
+
+  private destroyed$ = new Subject<void>();
+
+  
+
+  ngOnInit(): void {
+    this.authSrv.currentUser$.subscribe(user => {
+      console.log(user)
+      if (user) {
+        this.authSrv.currentAccount$.subscribe(acc => {
+          if (acc) {
+            this.account = acc;
+            this.bankAccSrv.listTransaction(acc.id!).subscribe(trans => {
+              if (trans) {
+                this.transactions = trans;
+                this.lastTransaction = trans[0];
+              }
+            })
           }
         })
       }
     })
   }
 
- 
- 
+  ngOnDestroy(): void {
+    this.destroyed$.next();
+    this.destroyed$.complete();
+  }
+
   setFilters(value: any) {
     this.bankAccSrv.listTransaction(
-      this.account.id!,
+      this.account!.id!,
       value.record,
       value.category,
       value.firstDate,
@@ -63,10 +78,9 @@ export class TransactionsComponent {
         bankAccountId: transaction.bankAccount.id,
         date: transaction.date,
         balance: transaction.balance,
-        amount: transaction.amount,
         categoryName: transaction.category.name,
         description: transaction.description,
-        id: transaction.id
+        amount: transaction.amount
       }
     })
     /* pass here the table id */

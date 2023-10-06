@@ -40,11 +40,10 @@
 .iban {
     position: absolute;
     text-align: left;
-    bottom: 20px;
-    left: 30px;
-    margin-bottom: 0.5rem;
-    margin-left: 13.5rem;
+    bottom: 1rem;
+    right: 1.5rem;
     color: white;
+    font-weight: bold;
 }
 
 .btn-export {
@@ -53,13 +52,13 @@
     top: 6rem;
     display: flex;
     border-radius: 5px;
-    background-color: hsl(181, 62%, 46%);
+    background-color: hsl(209, 51%, 32%);
     color: white;
-    margin: 30px 0 auto auto;
+    margin-left: 2rem;
 }
 
 .btn-export:active {
-    background-color: hsl(181, 43%, 63%);
+    background-color: hsla(209, 51%, 32%, 0.681);
     color: white;
 }
 
@@ -81,9 +80,7 @@
 }
 
 .export-icon{
-    width: 1rem;
-    height: 1rem;
-    color: white;
+    margin-left: 0.4rem;
 }
 
 ngb-pagination ::ng-deep ul > li:not(.active) > a {

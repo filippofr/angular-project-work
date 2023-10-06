@@ -7,34 +7,45 @@
     width: 80%;
     position: absolute;
     margin-left: 50px;
-  }
-.container{
+}
+
+.container {
     margin-top: 50px;
 }
-.card{
-    
+
+.card {
     margin-bottom: 20px;
     border-radius: 20px;
     background-color: rgb(37, 162, 163);
     color: white;
     font-size: 20px;
+    height: 5rem;
 }
-.card-body{
-    margin-top: 20px;
+
+.card-body {
     padding-left: 3rem;
     padding-right: 3rem;
 }
-.icon{
+
+.icon {
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    margin-right: 10px;
 }
-.motivationalSentence{
+
+.centered {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    height: inherit;
+}
+
+.motivationalSentence {
     font-size: 52px;
-    color: white; 
+    color: white;
     padding-left: 400px;
     margin-top: 130px;
-    margin-left: 100px;
+    margin-left: 190px;
     line-height: 95px;
+    font-weight: bold;
 }
