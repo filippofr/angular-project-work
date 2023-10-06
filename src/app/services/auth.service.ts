@@ -36,7 +36,7 @@ export class AuthService implements OnInit {
   }
 
   registration(firstName: string, lastName: string, username: string, password: string, confPassword: string) {
-    return this.http.post<{ user: User, token: string }>('api/register', { firstName, lastName, username, password, confPassword })
+    return this.http.post<{ user: User, token: string }>('http://localhost:3000/api/register', { firstName, lastName, username, password, confPassword })
   }
 
   isLoggedIn() {
@@ -50,7 +50,7 @@ export class AuthService implements OnInit {
     //   tap(res => this._currentUser$.next(res.user)),
     //   map(res => res.user)
     // );
-    return this.http.post<{user: User, token: string}>('https://projectworkits.azurewebsites.net/api/login', {username, password})
+    return this.http.post<{ user: User, token: string }>('http://localhost:3000/api/login', {username, password})
       .pipe(
         tap(res => this.jwtSrv.setBankId(res.user.id!)),
         tap(res => this.jwtSrv.setToken(res.token)),
@@ -68,7 +68,7 @@ export class AuthService implements OnInit {
   }
 
   update(oldPassword: string, newPassword: string) {
-    return this.http.post<{message: string}>('https://projectworkits.azurewebsites.net/api/reset', {oldPassword, newPassword})
+    return this.http.post<{message: string}>('/api/reset', {oldPassword, newPassword})
   }
 
   userLogdIn() {
@@ -77,11 +77,11 @@ export class AuthService implements OnInit {
   }
 
   private fetchUser() {
-    this.http.get<User>('https://projectworkits.azurewebsites.net/api/users/me')
+    this.http.get<User>('/api/users/me')
       .subscribe(user => this._currentUser$.next(user));
   }
   private currentAccount(){
-    this.http.get<BankAccount>('https://projectworkits.azurewebsites.net/api/account')
+    this.http.get<BankAccount>('/api/account')
       .subscribe(account => this._currentAccount$.next(account))
   }
 }

@@ -30,7 +30,7 @@ export class PhoneTopUpService {
         const requestBody = { bankAccount: bankAcc!.id, phoneNumber: phoneNumber, phoneOperator: phoneOperator, amount: amount };
     
         if (bankAcc!.id !== null || bankAcc!.id !== undefined) {
-          this.http.post("https://projectworkits.azurewebsites.net/api/transaction/phoneTopUp", requestBody, { headers })
+          this.http.post("/api/transaction/phoneTopUp", requestBody, { headers })
             .subscribe(
               () => {
                 // Gestisci la risposta dal backend qui

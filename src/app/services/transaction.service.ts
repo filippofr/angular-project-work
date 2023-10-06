@@ -29,7 +29,7 @@ export class TransactionService {
     });
     const bankAccount = bankAcc!.id;
     if (bankAcc!.id !== null || bankAcc!.id !== undefined) {
-      this.http.post("https://projectworkits.azurewebsites.net/api/transaction/bankTransfer",  {bankAccount, iban, amount, description} , { headers } )
+      this.http.post("/api/transaction/bankTransfer",  {bankAccount, iban, amount, description} , { headers } )
         .subscribe(
           (response) => {
             // Gestisci la risposta dal backend qui

@@ -31,7 +31,7 @@ export class AddTransactionService {
       });
       const bankAccount = bankAcc!.id;
       if (bankAcc!.id !== null || bankAcc!.id !== undefined) {
-        this.http.post("https://projectworkits.azurewebsites.net/api/transaction/add",  {bankAccount, category, amount, description} , { headers } )
+        this.http.post("/api/transaction/add",  {bankAccount, category, amount, description} , { headers } )
           .subscribe(
             (response) => {
               console.log("Riuscito:", response);
